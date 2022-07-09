@@ -2,8 +2,8 @@
 <html lang="{{ app()->getLocale() }}">
 <head>
     <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0" name="viewport"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -29,7 +29,7 @@
         <div class="sidebar-wrapper">
             <div class="user">
                 <div class="photo">
-                    <img src="{{ asset('storage/avatar/'.Auth::user()->avatar) }}" alt="">
+                    <img src="{{ asset('img/default-avatar.png') }}"/>
                 </div>
                 <div class="user-info">
                     <a data-toggle="collapse" href="#collapseExample" class="username">
@@ -51,12 +51,6 @@
                                 {{--</a>--}}
                             {{--</li>--}}
                             <li class="nav-item">
-                                <a class="nav-link" href="{{action('UsersController@show', Auth::user()->id)}}">
-                                    <span class="sidebar-mini"> P </span>
-                                    <span class="sidebar-normal"> User Profile </span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
                                 <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     <span class="sidebar-mini"> L </span>
                                     <span class="sidebar-normal"> Logout </span>
@@ -71,215 +65,151 @@
                 </div>
             </div>
             <ul class="nav">
-               <li class="nav-item">
-                  <a class="nav-link" href="{{action('HomeController@index')}}">
-                       <i class="material-icons">dashboard</i>
-                       <p> Dashboard </p>
-                   </a>
-               </li>
-               <li class="nav-item ">
-                   <a class="nav-link" href="{{action('MembersController@index')}}">
-                       <i class="fa fa-users"></i>
-                       <p> Members </p>
-                   </a>
-               </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{action('HomeController@index')}}">
+                        <i class="material-icons">dashboard</i>
+                        <p> Dashboard </p>
+                    </a>
+                </li>
 
-               <li class = "nav-item">
-                <a class = "nav-link" data-toggle = "collapse" href="#roll">
-                    <i class="fa fa-book"></i>
-                        <p>Rolls
-                            <b class = "caret"></b>
-                        </p>
-                </a>
-                <div class = "collapse" id="roll">
-                    <ul class = "nav">
-
-                       <li class = "nav-item">
-                           <a class = "nav-link"  href="{{action('RollController@index')}}">
-                            <span class= "sidebar-normal">Current Roll</span>
-                           </a>
-                        </li>
-
-                        <li class = "nav-item">
-                            <a class = "nav-link" href = "{{action('RollController@parade')}}">
-                                <span class = "sidebar-normal">First Parade Roll</span>
-                            </a>
-                        </li>
-
-                        <li class = "nav-item">
-                            <a class = "nav-link" href={{action('RollController@show', [1])}}>
-                                <span class = "sidebar-normal">Past Rolls</span>
-                            </a>
-                        </li>
-
-                    </ul>
-                </div>
-            </li>
-
-            <li class = "nav-item">
-                <a class = "nav-link" data-toggle = "collapse" href="#events">
-                    <i class="fa fa-calendar"></i>
-                        <p>Squadron Events
-                            <b class = "caret"></b>
-                        </p>
-                </a>
-                <div class = "collapse" id="events">
-                    <ul class = "nav">
-
-                       <li class = "nav-item">
-                           <a class = "nav-link"  href="{{action('EventController@index')}}">
-                            <span class= "sidebar-normal">Event List</span>
-                           </a>
-                        </li>
-
-                        <li class = "nav-item">
-                            <a class = "nav-link" href = "{{action('EventController@index')}}">
-                                <span class = "sidebar-normal">Event Rolls</span>
-                            </a>
-                        </li>
-
-                    </ul>
-                </div>
-            </li>
-
-            <li class="nav-item">
-                <a class = "nav-link" data-toggle = "collapse" href="#accounting">
-                    <i class="fa fa-money"></i>
-                    <p>Squadron Accounting
-                        <b class = "caret"></b>
-                    </p>
-                </a>
-                <div class = "collapse" id="accounting">
-                    <ul class = 'nav'>
-
-                        <li class = "nav-item">
-                            <a class = "nav-link" href ="{{action('SquadronAccountingController@index')}}">
-                                <span class = "sidebar-normal">Sqaudron Accounting Overview</span>
-                            </a>
-                        </li>
-
-                        <li class = "nav-item">
-                            <a class = "nav-link" href="{{action('ActiveKidsController@index')}}">
-                                <span class = "sidebar-normal">Vouchers</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-
-               <li class="nav-item">
-                   <a class = "nav-link" data-toggle = "collapse" href="#reports">
-                       <i class="fa fa-paperclip"></i>
-                        <p>Reports
-                            <b class = "caret"></b>
-                        </p>
-                   </a>
-
-                   <div class = "collapse" id="reports">
-                        <ul class = "nav">
-
-                            <li class="nav-item ">
-                                <a class="nav-link" href="{{action('Form19Controller@index')}}">
-                                    <span>Form 19</span>
-                                </a>
-                            </li>
-
-                        </li>
-
-                        @if(config('global.Squadron_Points') != 'N')
+                 <li class="nav-item ">
+                    <a class="nav-link" data-toggle="collapse" href="#members">
+                        <i class="fa fa-fighter-jet"></i>
+                        <p> Members  <b class="caret"></b></p>
+                    </a>
+                    <div class="collapse" id="members">
+                        <ul class="nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{action('PointsController@index')}}">
-                                    <span>Squadron Points</span>
+                                <a class="nav-link" href="">
+                                    <span class="sidebar-normal"> Member View </span>
                                 </a>
                             </li>
-                        @endif
-
                             <li class="nav-item">
-                                <a class="nav-link" href="{{action('StaffAttendanceController@index')}}">
-                                    <span>Member Leave</span>
+                                <a class="nav-link" href="">
+                                    <span class="sidebar-normal"> Accommodation </span>
                                 </a>
                             </li>
-
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{action('ReportController@attendance')}}">
-                                    <span>Attendance Overview</span>
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{action('StockController@index')}}">
-                                    <span>Stock List</span>
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{action('ReportController@past')}}">
-                                    <span>Saved Reports</span>
-                                </a>
-                            </li>
-
                         </ul>
                     </div>
-
-
-
                 </li>
 
 
-               <!-- Drop down other menu -->
-                <li class = "nav-item">
-                    <a class = "nav-link" data-toggle = "collapse" href="#others">
-                        <i class="fa fa-cog"></i>
-                            <p>Other Items
-                                <b class = "caret"></b>
-                            </p>
+               <li class="nav-item ">
+                    <a class="nav-link" data-toggle="collapse" href="#lessions">
+                        <i class="fa fa-fighter-jet"></i>
+                        <p> Lessions  <b class="caret"></b></p>
                     </a>
-                    <div class = "collapse" id="others">
-                        <ul class = "nav">
-
-                           <li class = "nav-item">
-                               <a class = "nav-link"  href="{{action('SettingsController@index')}}">
-                                <span class= "sidebar-normal">Squadron Settings</span>
-                               </a>
-                            </li>
-
-                            <!-- Allows allow users how have SMS permission -->
-                            @can('sms')
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ action('NotificationController@index') }}">
-                                        <span class="sidebar-normal">Notifications</span>
-                                    </a>
-                                </li>
-                            @endcan
-
-
-                            <li class = "nav-item">
-                                <a class = "nav-link" href = "https://admin.airleague.com.au/" target="_blank">
-                                    <span class = "sidebar-normal">NAS</span>
+                    <div class="collapse" id="lessions">
+                        <ul class="nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="">
+                                    <span class="sidebar-normal"> Lessions </span>
                                 </a>
                             </li>
-
-                            <li class = "nav-item">
-                                <a class = "nav-link" href="//www.mailchimp.com" target="_blank">
-                                    <span class = "sidebar-normal">Mailchimp</span>
+                            <li class="nav-item">
+                                <a class="nav-link" href="">
+                                    <span class="sidebar-normal"> Instructors </span>
                                 </a>
                             </li>
-
-                            <li class = "nav-item">
-                                <a class = "nav-link" href="https://nsw.airleague.com.au/submit/nsw-voucher/" target="_blank">
-                                    <span class = "sidebar-normal">NSW Vouchers</span>
+                            <li class="nav-item">
+                                <a class="nav-link" href="">
+                                    <span class="sidebar-normal"> Timetable </span>
                                 </a>
                             </li>
-
-                            <li class = "nav-item">
-                                <a class = "nav-link" href="https://github.com/eaglefox82/squadronadmin/releases" target="_blank">
-                                    <span class = "sidebar-normal">Release Notes</span>
-                                </a>
-                            </li>
-
                         </ul>
                     </div>
+                </li>
+
+
+
+                <li class="nav-item ">
+                    <a class="nav-link" href="}">
+                        <i class="fa fa-plane"></i>
+                        <p> Camp Check In </p>
+                    </a>
+                </li>
+
+                <li class="nav-item ">
+                    <a class="nav-link" data-toggle="collapse" href="#campmanagement">
+                        <i class="fa fa-fighter-jet"></i>
+                        <p> Camp Management  <b class="caret"></b></p>
+                    </a>
+                    <div class="collapse" id="campmanagement">
+                        <ul class="nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="">
+                                    <span class="sidebar-mini"> C </span>
+                                    <span class="sidebar-normal"> Camps </span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="">
+                                    <span class="sidebar-mini"> A </span>
+                                    <span class="sidebar-normal"> Accounting </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+
+                <li class="nav-item">
+                    <a class="nav-link" href="">
+                        <i class="fa fa-handshake-o"></i>
+                        <p>Admin Managment</p>
+                    </a>
+                </li>
+
+                <!-- In place for future use
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="collapse" href="#reports">
+                        <i class="fa fa-file-text"></i>
+                        <p>Reports <b class = "caret"></b></p>
+                    </a>
+
+                    <div class="collapse" id="reports">
+                        <ul class="nav">
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="">
+                                   <span class="sidebar-normal">Camp Report</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="">
+                                    <span class="sidebar-normal">Expenses Report</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="collapse" href="#settings">
+                        <i class="fa fa-cog"></i>
+                        <p>Settings<b class = "caret"></b></p>
+                    </a>
+
+                    <div class="collapse" id="settings">
+                        <ul clas="nav">
+
+                            <li class = "nav-item">
+                                <a class = "nav-link" href="">
+                                    <span class="sidebar-normal">Camp Settings</span>
+                                </a>
+                            </li>
+
+                            <li class = "nav=item">
+                                <a class = "nav-link" href="">
+                                    <span class="sidebar-normal">Camp List</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                -->
 
             </ul>
         </div>
@@ -308,12 +238,6 @@
         </nav>
         <!-- End Navbar -->
 
-        <h2 class="text-center">{{  config('app.name', 'Squadron') }} Admin Site
-            @if (App::environment() != 'Production')
-                - Development
-            @endif
-        </h2>
-
         <div class="content">
             @yield('content')
         </div>
@@ -325,7 +249,7 @@
                     <script>
                         document.write(new Date().getFullYear())
                     </script>
-                     | Devlopment by Brendan Fox</a>
+                     | Developed by Brendan Fox</a>
                 </div>
             </div>
         </footer>
@@ -334,16 +258,6 @@
 @stack('scripts')
 </body>
 <!--   Core JS Files   -->
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
-<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
-
-
-
-
 <script src="{{ asset('js/core/jquery.min.js') }}"></script>
 <script src="{{ asset('js/core/popper.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap-material-design.js') }}"></script>
@@ -393,6 +307,5 @@
 <script src="{{ asset('js/plugins/fullcalendar.min.js') }}"></script>
 
 @yield('scripts')
-@include('sweetalert::alert')
 
 </html>
