@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 
+use App\Member;
+
 
 use Carbon\Carbon;
 
@@ -30,8 +32,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $user =
+        $registered = Member::all()->get();
+        $incamp = Member::where('checked_in', 'True');
+        $pecentage = ($camp/$incamp)*100 ;
 
-        return view('home');
+        return view('home', compact('registered', 'incamp', 'pencentage');
     }
 }
