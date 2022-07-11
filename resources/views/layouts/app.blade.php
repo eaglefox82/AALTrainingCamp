@@ -138,13 +138,11 @@
                         <ul class="nav">
                             <li class="nav-item">
                                 <a class="nav-link" href="">
-                                    <span class="sidebar-mini"> C </span>
                                     <span class="sidebar-normal"> Camps </span>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="">
-                                    <span class="sidebar-mini"> A </span>
                                     <span class="sidebar-normal"> Accounting </span>
                                 </a>
                             </li>
@@ -249,7 +247,7 @@
                     <script>
                         document.write(new Date().getFullYear())
                     </script>
-                     | Developed by Brendan Fox</a>
+                     | Developed by Brendan Fox
                 </div>
             </div>
         </footer>

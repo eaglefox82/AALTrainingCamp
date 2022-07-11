@@ -36,6 +36,6 @@ class HomeController extends Controller
         $incamp = Member::where('checked_in', 'True');
         $pecentage = ($camp/$incamp)*100 ;
 
-        return view('home', compact('registered', 'incamp', 'pencentage');
+        return view('home', compact('registered', 'incamp', 'pencentage'));
     }
 }

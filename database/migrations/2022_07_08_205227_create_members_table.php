@@ -24,10 +24,10 @@ class CreateMembersTable extends Migration
             $table->integer('unit_id')->nullable();
             $table->integer('duty_nco')->nullable();
             $table->integer('flight_id');
-            $table->boolean('band')->default(false);
-            $table->boolean('form17')->default(false);
-            $table->boolan('paid')->default(false);
-            $table->boolan('checked_in')->default(false);
+            $table->string('band')->default(false);
+            $table->string('form17')->default(false);
+            $table->string('paid')->default(false);
+            $table->string('checked_in')->default(false);
             $table->timestamps();
         });
     }
