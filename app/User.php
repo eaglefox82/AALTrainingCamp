@@ -5,13 +5,13 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Database\Eloquent\Model;
+
 
 
 class User extends Authenticatable
 {
     use Notifiable;
-    use HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -19,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'firstname', 'lastname', 'username', 'password', 'role_id', 'squadron_id'
+        'first_name', 'last_name', 'username', 'password'
     ];
 
     /**
@@ -31,33 +31,5 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function role()
-    {
-        return $this->hasOne('App\Role', 'id', 'role_id');
-    }
 
-    public function hasAnyRole($roles)
-    {
-        if (is_array($roles))
-        {
-            foreach ($roles as $r)
-            {
-                if ($this->hasRole($r))
-                    return true;
-            }
-        }
-        else
-            if ($this->hasRole($roles))
-                return true;
-
-        return false;
-    }
-
-    public function hasRole($role)
-    {
-        if ($this->role->name == $role)
-            return true;
-
-        return false;
-    }
 }
