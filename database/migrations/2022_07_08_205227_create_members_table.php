@@ -27,6 +27,7 @@ class CreateMembersTable extends Migration
             $table->boolean('band')->default(false);
             $table->boolean('form17')->default(false);
             $table->boolan('paid')->default(false);
+            $table->boolan('checked_in')->default(false);
             $table->timestamps();
         });
     }
