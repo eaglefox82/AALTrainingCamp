@@ -19,11 +19,11 @@ class RoomsSeeder extends Seeder
 
         Rooms::create(['id' => 1, 'name' => 'Valleyview']);
         Rooms::create(['id' => 2, 'name' => 'TreeTops']);
-        Rooms::create(['id' => 1, 'name' => 'Gymnasium 1']);
-        Rooms::create(['id' => 2, 'name' => 'Gymnasium 2']);
-        Rooms::create(['id' => 1, 'name' => 'Initiatives Course']);
-        Rooms::create(['id' => 2, 'name' => 'Parade Ground']);
-        Rooms::create(['id' => 1, 'name' => 'Eaglesview']);
-        Rooms::create(['id' => 2, 'name' => 'Mess Hall']);
+        Rooms::create(['id' => 3, 'name' => 'Gymnasium 1']);
+        Rooms::create(['id' => 4, 'name' => 'Gymnasium 2']);
+        Rooms::create(['id' => 5, 'name' => 'Initiatives Course']);
+        Rooms::create(['id' => 6, 'name' => 'Parade Ground']);
+        Rooms::create(['id' => 7, 'name' => 'Eaglesview']);
+        Rooms::create(['id' => 8, 'name' => 'Mess Hall']);
     }
 }

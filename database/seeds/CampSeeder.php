@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use DB;
+use App\Campmapping;
 
 class CampSeeder extends Seeder
 {
@@ -13,14 +13,16 @@ class CampSeeder extends Seeder
     public function run()
     {
         //
-        DB::table('camp_mappings')->insert([
-            'year' => '2022',
-            'start_date' => '2022-08-05',
-            'end_date' => '2021-08-07',
-            'theme' => 'Core Values',
-            'location' => 'Galston Gorge',
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
+
+        Campmapping::truncate();
+
+        $campmapping = new Campmapping;
+        $campmapping->year = '1';
+        $campmapping->start_date = '2022-08-05';
+        $campmapping->end_date = '2022-08-07';
+        $campmapping->theme = 'Core Values';
+        $campmapping->location = 'Galston Gorge';
+        $campmapping->save();
+
     }
 }

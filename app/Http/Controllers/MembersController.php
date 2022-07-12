@@ -10,24 +10,14 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\Paginator;
 use Alert;
 use DataTables;
+use Carbon\Carbon;
 
 use App\Member;
-use App\Roll;
-use App\Vouchers;
-use App\VoucherType;
-use Carbon\Carbon;
-use App\RollMapping;
-use App\RankMapping;
-use App\Settings;
-use App\Accounts;
-use App\Page;
-use App\Otheritemmapping;
-use App\Flight;
-use App\Events;
-use App\Eventroll;
-use App\Points;
-use App\Pointsmaster;
-use App\Contact;
+use App\Unit;
+use App\Campmapping;
+
+
+
 
 
 class MembersController extends Controller
@@ -39,13 +29,9 @@ class MembersController extends Controller
      */
     public function index()
     {
-       $members = Member::where('active', '!=', 'N')->where('member_type', '=', 'League')->orderby('rank', 'asc')->get();
-       $rank = Rankmapping::orderBy('id', 'desc')->paginate(20);
-       $flight = Flight::orderBy('id');
-       $malemembers =  Member::where('active', '!=', 'N')->where('member_type', '=', 'League')->where('membership_number','LIKE','N%')->get();
-       $femalemembers = Member::where('active', '!=', 'N')->where('member_type', '=', 'League')->where('membership_number','LIKE','W%')->get();
+       $squadron = Unit::all();
 
-       return view('members.index', compact('members', 'rank', 'flight', 'malemembers', 'femalemembers'));
+       return view('members.index', compact('squadron'));
     }
 
     /**
@@ -140,33 +126,14 @@ class MembersController extends Controller
     {
         //
 
+        $squadron = Unit::all();
+
        $member = Member::find($id);
-       $rank = Rankmapping::orderBy('id','desc')->get();
-       $vtype = VoucherType::orderby('id')->get();
-       $otheritems = Otheritemmapping::orderby('id')->get();
-       $flight = Flight::orderby('id')->get();
-       $account = Accounts::where('member_id', $id)->orderBy('id', 'desc')->Paginate(10);
-       $pointsreason = Pointsmaster::orderby('id')->get();
-       $points = Points::where('year', '=', Carbon::parse(now())->year)->orderBy('id', 'desc')->Paginate(20);
 
        if ($member !=null)
        {
-           if($member->attendance->count() != 0){
-               $attendance = ($member->attendance->count()/$member->memberyear->count())*100;
-           } else {
-               $attendance = 0;
-           }
 
-
-       $attendancesetting = Settings::where('setting', 'Attendance')->value('value');
-
-       if($member->attendancewarning == 3)
-       {
-           alert()->info('Member has missed the last 3 nights', 'Please contact member to cross off roll')->autoclose(2500);
-
-       }
-
-        return view('members.show', compact('member', 'attendance','attendancesetting', 'rank', 'vtype','otheritems', 'flight', 'account', 'points', 'pointsreason'));
+        return view('members.show', compact('squadron'));
       }
 
       return redirect(action('MembersController@index'));
@@ -265,69 +232,27 @@ class MembersController extends Controller
         }
     }
 
-    public function birthday()
-    {
-        $birthdays = Member::where('active', 'Y')->get();
-        $birthdays = $birthdays->sortby(function($q){
-            return $q->birthday;
-        });
 
-        return view('members.birthday', compact('birthdays'));
-    }
-
-
-    public function getPayments($id = 0)
-    {
-        $data = Otheritemmapping::where('id', $id)->first();
-        return response()->json($data);
-    }
-
-    public function newmembers()
-    {
-        $month = Rollmapping::latest()->value('roll_month');
-        $year = Rollmapping::latest()->value('roll_year');
-
-        $newmembers = Member::where('join_year', $year)->where('join_month', $month)->get();
-
-        return view('members.new', compact('newmembers'));
-    }
-
-
-    public function index_test()
-    {
-       $members = Member::where('active', '!=', 'N')->where('member_type', '=', 'League')->orderby('rank', 'asc')->get();
-       $rank = Rankmapping::orderBy('id', 'desc')->paginate(20);
-       $flight = Flight::orderBy('id');
-       $malemembers =  Member::where('active', '!=', 'N')->where('member_type', '=', 'League')->where('membership_number','LIKE','N%')->get();
-       $femalemembers = Member::where('active', '!=', 'N')->where('member_type', '=', 'League')->where('membership_number','LIKE','W%')->get();
-       $followup = $members->with('attendancewarning')->where('warning','!=', 'No');
-
-       return view('members.index_test', compact('members', 'rank', 'flight', 'malemembers', 'femalemembers','followup'));
-    }
 
     public function getMemberlist(Request $request)
     {
        if ($request->ajax()) {
 
-          $members=Member::where('active', '!=', 'N')
-                            ->where('member_type', '=', 'League')
-                            ->orderby('rank', 'asc')
-                            ->with('memberrank', 'flightmap')
-                            ->get();
+        $camp = Campmapping::latest()->value('id');
+
+          $members=Member::where('camp_id',$camp)->with('unitmap', 'membermap')->get();
 
             return DataTables::of($members)
-                ->addColumn('account', function($members) {
-                    return $members->Accounts->sum('amount');
+                ->addColumn('flightname', function($row){
+                    return $row->membermap->flight->flight_name;
                 })
-                ->addColumn('owning', function($members) {
-                    return $members->outstanding->count()*10;
+                ->addColumn('hutname', function($row){
+                    return $row->membermap->room->name;
                 })
-                ->addColumn('birthday', function($members) {
-                    return $members->birthday;
+                ->addColumn('roomnumber', function($row){
+                    return $row->membermap->room->number;
                 })
-                ->addColumn('attendance', function($members) {
-                    return $members->attendancewarning;
-                })
+
                 ->addColumn('action', function($row){
 
                     $btn = '<a href="'.action('MembersController@show', $row->id).'" target="_blank" title="View" class="btn btn-round btn-success"><i class="fa fa-info"></i></a>';
@@ -342,19 +267,14 @@ class MembersController extends Controller
     }
 
 
-    public function memberleave()
+    public function memberCheckIn($id)
     {
-        $roll = Rollmapping::latest()->take(0)->value('roll_date');
-        $leave = StaffAttendance::where('date', '=', Carbon::parse($roll))->where('member_id', $this->id)->get();
+        $member = Member::find($id);
+        $member->checkin = 'Y';
+        $member->save();
 
-        if ($leave->count() > 0)
-        {
-            return 'Yes';
-        }
-        else
-        {
-            return 'No';
-        }
+        alert()->success('Complete', 'Member has been checked in')->autoclose(1500);
+        return redirect(action('MembersController@show', $id));
     }
 
 

@@ -32,9 +32,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $registered = Member::all()->get();
-        $incamp = Member::where('checked_in', 'True');
-        $pecentage = ($camp/$incamp)*100 ;
+        $registered = Member::all();
+        $incamp = Member::where('checked_in', 'Y')->get();
+
+        if ($registered->count() == 0) {
+            $pencentage = 0;
+        } else {
+            $pencentage = (($incamp->count())/($registered->count()))*100;
+        }
 
         return view('home', compact('registered', 'incamp', 'pencentage'));
     }

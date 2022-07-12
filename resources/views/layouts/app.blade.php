@@ -80,7 +80,7 @@
                     <div class="collapse" id="members">
                         <ul class="nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="">
+                                <a class="nav-link" href="{{ action('MembersController@index') }}">
                                     <span class="sidebar-normal"> Member View </span>
                                 </a>
                             </li>
