@@ -89,6 +89,16 @@
                                     <span class="sidebar-normal"> Accommodation </span>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="">
+                                    <span class="sidebar-normal"> Medical </span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{  action('FoodController@index') }}">
+                                    <span class="sidebar-normal"> Dietary </span>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </li>
@@ -118,15 +128,6 @@
                             </li>
                         </ul>
                     </div>
-                </li>
-
-
-
-                <li class="nav-item ">
-                    <a class="nav-link" href="}">
-                        <i class="fa fa-plane"></i>
-                        <p> Camp Check In </p>
-                    </a>
                 </li>
 
                 <li class="nav-item ">

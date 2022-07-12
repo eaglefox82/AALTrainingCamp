@@ -4,7 +4,6 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-use App\Member_mapping;
 
 class Member extends Model
 {
@@ -18,5 +17,10 @@ class Member extends Model
     public function membermap()
     {
         return $this->hasOne('App\member_mapping', 'member_id', 'id');
+    }
+
+    public function foodrequirements()
+    {
+        return $this->hasOne('App\Food', 'member_id', 'id');
     }
 }
