@@ -149,14 +149,6 @@ class MembersController extends Controller
     {
         //
 
-        $member = Member::find($id);
-        $rank = Rankmapping::orderBy('id','desc')->get();
-
-        if ($member != null)
-        {
-            return view('members.edit', compact('member', 'rank'));
-        }
-        return redirect(action('MembersController@index'));
     }
 
     /**
@@ -168,34 +160,7 @@ class MembersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-        $validateData = Validator::make($request->all(), [
-            'membernumber' => 'required',
-            'firstname' => 'required',
-            'lastname' => 'required',
-            'rank' => 'required',
-            'type' => 'required',
-        ]);
-
-        if ($validateData->fails())
-        {
-            return Redirect::back()->withErrors($validateData)->withInput();
-        }
-
-        $member = Member::find($id);
-        $member->membership_number = $request->get('membernumber');
-        $member->first_name = $request->get('firstname');
-        $member->last_name = $request->get('lastname');
-        $member->Member_type = $request->get('type');
-        $member->rank = $request->get('rank');
-        $member->flight = $request->get('flight');
-        $member->date_joined = Carbon::parse($request->get('doj'));
-        $member->date_birth = Carbon::parse($request->get('dob'));
-        $member->save();
-
-        alert()->success('Member Updated', 'Members New Details have been recored')->autoclose(1500);
-        return redirect(action('MembersController@show', $request->get('member')));
-    }
+      
 
     /**
      * Remove the specified resource from storage.
@@ -211,29 +176,11 @@ class MembersController extends Controller
     public function inactive($id)
     {
         //
-        $member = Member::find($id);
-
-        if ($member != null)
-        {
-            // Set Member to Inactive in member table
-            $member->active = "N";
-            $member->save();
-
-            // Find all Contacts for member and set to inactive
-            $conatcts = Contact::where('member_id', $id)->get();
-            foreach ($conatcts as $c)
-            {
-                $c->active = "N";
-                $c->save();
-            }
-
-            alert()->success('Complete', 'Member has been made inactive')->autoclose(1500);
-            return redirect(action('MembersController@index', $member->id));
-        }
+      
     }
 
 
-
+    // This function is an Ajax request for the Member Datatable list
     public function getMemberlist(Request $request)
     {
        if ($request->ajax()) {
@@ -266,11 +213,19 @@ class MembersController extends Controller
         }
     }
 
-
     public function memberCheckIn($id)
     {
+        $member=member::find($id);
+
+        return view ('member.checkin',compact('member'));
+    }
+
+
+    public function completeMemberCheckIn(Request $request, $id)
+    {
         $member = Member::find($id);
-        $member->checkin = 'Y';
+        $member->checked_in = $request->get('checkedin');
+        $member->form17 = $request->get('form17');
         $member->save();
 
         alert()->success('Complete', 'Member has been checked in')->autoclose(1500);
