@@ -15,6 +15,8 @@ use Carbon\Carbon;
 use App\Member;
 use App\Unit;
 use App\Campmapping;
+use App\Flights;
+use App\Member_mapping;
 
 
 
@@ -43,9 +45,10 @@ class MembersController extends Controller
     {
         //
 
-        $rank = Rankmapping::orderBy('id', 'desc')->get();
+       $unit = Unit::all();
+       $flight = Flights::all();
 
-        return view('members.add',compact('rank'));
+        return view('members.add',compact('unit', 'flight'));
     }
 
     /**
@@ -63,9 +66,9 @@ class MembersController extends Controller
          'firstname' => 'required',
          'lastname' => 'required',
          'rank' => 'required',
-         'doj' => 'required',
-         'dob' => 'required',
-         'type' => 'required',
+         'squadron' => 'required',
+         'band' => 'required',
+         'gender' => 'required',
      ]);
 
      if ($validateData->fails())
@@ -83,35 +86,20 @@ class MembersController extends Controller
             $rank = 19;
         } */
 
+        $campid = Campmapping::latest()->value('id');
+
         $e = new Member();
-        $e->membership_number = $request->get('membership');
+        $e->camp_id = $campid;
+        $e->membership = $request->get('membership');
         $e->first_name = $request->get('firstname');
         $e->last_name = $request->get('lastname');
         $e->rank = $request->get('rank');
-        $e->date_joined = Carbon::parse($request->get('doj'));
-        $e->date_birth = Carbon::parse($request->get('dob'));
-        $e->member_type = $request->get('type');
-        $e->active= "Y";
-        $e->flight=0;
-        $e->join_month = Carbon::parse($request->get('doj'))->month;
-        $e->join_year = Carbon::parse($request->get('doj'))->year;
+        $e->unit_id = $request->get('squadron');
+        $e->band = $request->get('band');
+        $e->gender = $request->get('gender');
         $e->save();
 
-        //Add member to current event rolls
-        $memberid = Member::latest()->value('id');
-        $events = Events::where('finished', '=', 'N')->get();
-
-        foreach ($events as $r)
-        {
-            $e = New Eventroll;
-            $e->event_id = $r->id;
-            $e->member_id = $memberid;
-            $e->status = 'N';
-            $e->form17 = 'N';
-            $e->paid = 'N';
-            $e->save();
-        }
-
+        Alert::success('Success', 'Member Added');
         Alert()->success('New Member Added', 'New member has been created')->autoclose(2000);
         return redirect(action('MembersController@index'));
     }
@@ -130,10 +118,19 @@ class MembersController extends Controller
 
        $member = Member::find($id);
 
+        $membermap = Member_mapping::where('member_id', $id)->get();
+
+        if($membermap !=null)
+        {
+            $mapping = "N";
+        }    else {
+            $mapping = "Y";
+        }
+
        if ($member !=null)
        {
 
-        return view('members.show', compact('squadron', 'member'));
+        return view('members.show', compact('squadron', 'member', 'mapping'));
       }
 
       return redirect(action('MembersController@index'));
@@ -160,6 +157,7 @@ class MembersController extends Controller
      */
     public function update(Request $request, $id)
     {
+    }
 
 
     /**
@@ -191,13 +189,17 @@ class MembersController extends Controller
 
             return DataTables::of($members)
                 ->addColumn('flightname', function($row){
-                    return $row->membermap->flight->flight_name;
+                    $flight = !empty($row->membermap->flight_id) ? $row->membermap->flight_id : 'N/A';
+                    return $flight;
                 })
+
                 ->addColumn('hutname', function($row){
-                    return $row->membermap->room->name;
+                    $hut = !empty($row->membermap->room->name) ? $row->membermap->room->name : 'N/A';
+                    return $hut;
                 })
                 ->addColumn('roomnumber', function($row){
-                    return $row->membermap->room->number;
+                    $room = !empty($row->membermap->room->number) ? $row->membermap->room->number : 'N/A';
+                    return $room;
                 })
 
                 ->addColumn('checkedin', function($row){
@@ -232,18 +234,8 @@ class MembersController extends Controller
     {
         $member=member::find($id);
 
-        return view ('member.checkin',compact('member'));
+        return view ('members.checkin',compact('member'));
     }
-
-
-    public function completeMemberCheckIn(Request $request, $id)
-    {
-        $member = Member::find($id);
-
-
-        return view ('members.checkin', compact('member'));
-    }
-
 
     public function completeCheckIn(Request $request,$id)
     {
@@ -274,6 +266,8 @@ class MembersController extends Controller
         $member = Member::find($id);
         return view ('members.adddietary', compact('member'));
     }
+
+
 
 
 

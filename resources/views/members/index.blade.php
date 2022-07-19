@@ -7,7 +7,7 @@
     <div class = "row">
 
         <div class = "col-sm-12">
-            <button class = "btn btn-round btn-primary pull-right" data-toggle = "modal" data-target="#addmemberModal" class = "btn btn-primary btn-round" title="Add Member"><i class="fa fa-plus fa-2x"></i>Add Memeber</button>
+            <a class = "btn btn-round btn-primary pull-right" href="{{ action('MembersController@create') }}" class = "btn btn-primary btn-round" title="Add Member"><i class="fa fa-plus fa-2x"></i>Add Memeber</a>
             <div class = "card">
                 <div class = "card-header card-header-icon card-header-rose pull-center">
                     <h2 class = "card-title text-center">Members</h2>
@@ -115,14 +115,14 @@
             serverSide: true,
             ajax: '{!! route('getMembers') !!}',
             columns: [
-                { data: 'membership', name: 'membership' },
+                { data: 'membership', name: 'membership', },
                 { data: 'first_name', name: 'first_name' },
                 { data: 'last_name', name: 'last_name' },
                 { data: 'rank', name: 'rank' },
                 { data: 'unitmap.unit', name: 'squadron' },
-                { data: 'flightname', name: 'flight' },
-                { data: 'hutname', name: 'hut' },
-                { data: 'roomnumber', name: 'room' },
+                { data: 'flightname', name: 'flight', null: '' },
+                { data: 'hutname', name: 'hut', null: '' },
+                { data: 'roomnumber', name: 'room', null: '' },
                 { data: 'checkedin', name: 'checked_in' },
                 {data: 'action', name: 'action', orderable: false, searchable: false}
             ]

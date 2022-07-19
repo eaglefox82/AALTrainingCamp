@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container-fluid">
+
+<div class="container-fluid">
+
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
@@ -12,77 +14,58 @@
                         <table class="table">
                             <tr>
                                 <th>First Name:</th>
-                                <td style="border-top: 1px #ddd solid">{{$instructor->firstName}}</td>
+                                <td style="border-top: 1px #ddd solid"></td>
                                 <th>Last Name:</th>
-                                <td style="border-top: 1px #ddd solid">{{$instructor->lastName}}</td>
-                            </tr>
-                            <tr>
-                                <th>Grade:</th>
-                                <td>{{$instructor->grade}}</td>
-                                <th>Supervision Required:</th>
-                                @if($instructor->supervisonRequired == 1)
-                                    <td>Yes</td>
-                                @else
-                                    <td>No</td>
-                                @endif
+                                <td style="border-top: 1px #ddd solid"></td>
                             </tr>
                         </table>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                        <div class="table-responsive">
-                            <h3>Flights</h3>
+        <div class = "row">
+            <div class = "col-lg-12 col-sm-6">
+                <div class="card">
+                    <div class="card-header card-header-icon card-header-rose">
+                        <h4 class="card-title font-weight-bold">Instuctor Timetable>
+                    </div>
+                        <div class="card-body">
                             <table class="table">
                                 <thead class="text-primary">
-                                    <th></th>
-                                    <th>Date</th>
-                                    <th class="text-center">FAS</th>
-                                    <th class="text-center">Aircraft</th>
-                                    <th class="text-center">Student</th>
-                                    <th class="text-center">Lesson</th>
-                                    <th class="text-center">Hours</th>
-                                    <th class="text-center">Landings</th>
-                                    <th class="text-center">Flight Total</th>
-                                    <th></th>
+                                    <th>Period</th>
+                                    <th>Lesson</th>
                                 </thead>
                                 <tbody>
-                                @php
-                                    $hrs = 0;
-                                    $landings = 0;
-                                    $income = 0;
-                                @endphp
-                                @foreach ($instructor->Flights as $f)
-                                    @php
-                                        $hrs += $f->hours;
-                                        $landings += $f->landings;
-                                        $income += $f->flightTotal;
-                                    @endphp
+                                    
                                     <tr>
-                                        <td class="text-center">
-                                            <a href="{{action('FlightsController@show', $f->id)}}" title="View" class="btn btn-success"><i class="fa fa-info"></i></a>
-                                        </td>
-                                        <td>{{date('j/n/Y', strtotime($f->flightDate))}}</td>
-                                        <td class="text-center">{{$f->fas}}</td>
-                                        <td class="text-center"><a href="{{action('AircraftsController@show', $f->Aircraft->id)}}" >{{$f->Aircraft->registration}} ({{$f->Aircraft->type}})</a></td>
-                                        <td class="text-center">
-                                            <a href="{{action('StudentsController@show', $f->student->id)}}" >{{$f->student->firstName}} {{$f->student->lastName}}</a>
-                                        </td>
-                                        <td class="text-center">{{$f->lesson->lesson}}</td>
-                                        <td class="text-center">{{$f->hours}}</td>
-                                        <td class="text-center">{{$f->landings}}</td>
-                                        <td class="text-center">${{number_format($f->flightTotal, 2)}}</td>
-                                        <td>
-                                            <a href="{{action('FlightsController@edit', $f->id)}}" class="btn btn-info" title="Edit Flight"><i class="fa fa-pencil"></i></a>
-                                        </td>
+                                        <td class="text-center"></td>
+                                        <td class="text-center"></td>
                                     </tr>
-                                @endforeach
-                                <tfooter>
-                                    <tr style="font-weight: bold">
-                                        <td class="text-right" colspan="6">Totals:</td>
-                                        <td class="text-center">{{number_format((float)$hrs, 1)}}</td>
-                                        <td class="text-center">{{$landings}}</td>
-                                        <td class="text-center">${{number_format($income, 2)}}</td>
+                                </tbody>
+                            </table>
+                        </div>
+                </div>
+            </div>
+
+
+                        <div class="table-responsive">
+                            <table class="table">
+                                <div class="pull-left">
+                                    <h3>Notes</h3>
+                                </div>
+                                <button class="btn btn-round btn-primary pull-right" data-toggle="modal" data-target="#addnoteModal" class="btn btn-primary btn-round" title="Add Note"><i class="fa fa-plus fa-2x"></i> Add Note</button>
+                                <thead class="text-primary">
+                                    <th width=10%>Date</th>
+                                    <th class="text-center">Note</th>
+                                </thead>
+                                <tbody>
+                                   
+                                    <tr>
                                         <td></td>
+                                        <td class="text-center"></td>
                                     </tr>
-                                </tfooter>
+                              
                                 </tbody>
                             </table>
                         </div>
@@ -91,4 +74,3 @@
             </div>
         </div>
     </div>
-@endsection
