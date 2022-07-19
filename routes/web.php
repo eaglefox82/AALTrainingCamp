@@ -21,6 +21,13 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::resource('/members', 'MembersController')->middleware('auth');
 Route::resource('/mess/diet', 'FoodController')->middleware('auth');
 
+//Post Routes
+Route::post('/members/completecheckin/{id}', 'MembersController@completeCheckIn')->middleware('auth');
+
+//Get Routes
+Route::get('/members/checkin/{id}', 'MembersController@memberCheckIn')->middleware('auth');
+
+
 
 //Ajax Calls
 Route::get('get/members', 'MembersController@getMemberlist')->name('getMembers');

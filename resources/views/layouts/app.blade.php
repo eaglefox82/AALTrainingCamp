@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>NSW Training Camp</title>
 
     <!-- Fonts -->
     <link rel="stylesheet" type="text/css"
@@ -23,7 +23,7 @@
     <div class="sidebar" data-color="rose" data-background-color="black" data-image="{{ asset('img/sidebar-1.jpg') }}">
         <div class="logo">
             <a href="#" class="simple-text logo-normal text-center">
-                {{ config('app.name', 'Laravel') }}
+                NSW Training Camp
             </a>
         </div>
         <div class="sidebar-wrapper">
@@ -37,7 +37,7 @@
                           @guest
 
                           @else
-                              {{ Auth::user()->firstname }} {{Auth::user()->lastname}}
+                              {{ Auth::user()->first_name }} {{Auth::user()->last_name}}
                           @endguest
                         <b class="caret"></b>
                       </span>
@@ -277,7 +277,8 @@
 <script src="{{ asset('js/modernizr.js') }}"></script>
 <!-- Material Dashboard Core initialisations of plugins and Bootstrap Material Design Library -->
 <script src="{{ asset('js/material-dashboard.js?v=2.0.1') }}"></script>
-<!-- Dashboard scripts -->
+<!--Jquery-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support SweetAlert -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
 <!-- Library for adding dinamically elements -->

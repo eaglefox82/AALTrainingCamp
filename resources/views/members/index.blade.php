@@ -24,6 +24,7 @@
                             <th class = "text-center">Flight</th>
                             <th class = "text-center">Hut</th>
                             <th class = "text-center">Room</th>
+                            <th class = "text-center">Checked In</th>
                             <th class = "text-center">Action</th>
                         </thead>
                         <tbody class = "text-center">
@@ -102,7 +103,7 @@
     </div>
 </div>
 
-@endsection
+@stop
 
 @section ('scripts')
 
@@ -122,6 +123,7 @@
                 { data: 'flightname', name: 'flight' },
                 { data: 'hutname', name: 'hut' },
                 { data: 'roomnumber', name: 'room' },
+                { data: 'checkedin', name: 'checked_in' },
                 {data: 'action', name: 'action', orderable: false, searchable: false}
             ]
         })
@@ -129,6 +131,7 @@
 
 </script>
 
-@stop
+
+@endsection
 
 

@@ -23,4 +23,6 @@ class Member extends Model
     {
         return $this->hasOne('App\Food', 'member_id', 'id');
     }
+
+
 }

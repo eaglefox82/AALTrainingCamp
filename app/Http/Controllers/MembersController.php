@@ -126,14 +126,14 @@ class MembersController extends Controller
     {
         //
 
-        $squadron = Unit::all();
+       $squadron = Unit::all();
 
        $member = Member::find($id);
 
        if ($member !=null)
        {
 
-        return view('members.show', compact('squadron'));
+        return view('members.show', compact('squadron', 'member'));
       }
 
       return redirect(action('MembersController@index'));
@@ -253,11 +253,26 @@ class MembersController extends Controller
                     return $row->membermap->room->number;
                 })
 
+                ->addColumn('checkedin', function($row){
+                    if ($row->checked_in =="Y")
+                    {
+                        return "Yes";
+                    } else {
+                        return "No";
+                    }
+                })
+
                 ->addColumn('action', function($row){
 
-                    $btn = '<a href="'.action('MembersController@show', $row->id).'" target="_blank" title="View" class="btn btn-round btn-success"><i class="fa fa-info"></i></a>';
+                    $btn1 = '<a href="'.action('MembersController@show', $row->id).'" target="_blank" title="View" class="btn btn-round btn-success"><i class="fa fa-info"></i></a>';
+                    $btn2 = '<a href="'.action('MembersController@memberCheckIn', $row->id).'" title="Check In" class="btn btn-round btn-primary"><i class="fa fa-check-square-o"></i></a>';
 
-                    return $btn;
+                    if ($row->checked_in == 'Y')
+                    {
+                        return $btn1;
+                    } else {
+                        return $btn1 . $btn2;
+                    }
                 })
 
 
@@ -266,15 +281,41 @@ class MembersController extends Controller
         }
     }
 
-
     public function memberCheckIn($id)
     {
         $member = Member::find($id);
-        $member->checkin = 'Y';
+
+        return view ('members.checkin', compact('member'));
+    }
+
+
+    public function completeCheckIn(Request $request,$id)
+    {
+        $member = Member::find($id);
+        $member->form17 = $request->get('form17');
+        $member->checked_in = 'Y';
         $member->save();
 
-        alert()->success('Complete', 'Member has been checked in')->autoclose(1500);
-        return redirect(action('MembersController@show', $id));
+        Alert::success('Complete', 'Member has been checked in')->autoclose(1500);
+        return redirect(action('MembersController@index'));
+    }
+
+    public function addMemberNote($id)
+    {
+        $member = Member::find($id);
+        return view ('members.addnote', compact('member'));
+    }
+
+    public function addMedical($id)
+    {
+        $member = Member::find($id);
+        return view ('members.addmedical', compact('member'));
+    }
+
+    public function addDietary($id)
+    {
+        $member = Member::find($id);
+        return view ('members.adddietary', compact('member'));
     }
 
 
