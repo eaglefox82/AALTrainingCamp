@@ -23,7 +23,6 @@ class CreateMembersTable extends Migration
             $table->string('rank');
             $table->integer('unit_id')->nullable();
             $table->integer('duty_nco')->nullable();
-            $table->integer('flight_id');
             $table->string('band')->default(false);
             $table->string('form17')->default(false);
             $table->string('paid')->default(false);
