@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DataTables;
 
 use Hut;
+use Campmapping;
+use Member_mapping;
 
 class HutController extends Controller
 {
@@ -87,5 +90,24 @@ class HutController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    // This function is an Ajax request for the Huts Datatable list
+    public function gethutlisting(Request $request)
+    {
+        if($request->ajax()){
+
+            $campid = Campmapping::latest()->value('id');
+
+            $huts = Huts::all();
+
+            return DataTables::of($huts)->with(mapping)->get();
+            ->addColumn('count', function ($row){
+                return $row->mapping->count('id');
+            })
+            ->make(true);
+
+        }
+
     }
 }
