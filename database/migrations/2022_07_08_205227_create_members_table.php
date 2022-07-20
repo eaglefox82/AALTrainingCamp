@@ -24,6 +24,7 @@ class CreateMembersTable extends Migration
             $table->integer('unit_id')->nullable();
             $table->integer('duty_nco')->nullable();
             $table->string('band')->default(false);
+            $table->string('single_day')->dafault(false);
             $table->string('form17')->default(false);
             $table->string('paid')->default(false);
             $table->string('checked_in')->default(false);

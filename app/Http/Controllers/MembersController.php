@@ -17,6 +17,7 @@ use App\Unit;
 use App\Campmapping;
 use App\Flights;
 use App\Member_mapping;
+use App\Notes;
 
 
 
@@ -97,6 +98,7 @@ class MembersController extends Controller
         $e->unit_id = $request->get('squadron');
         $e->band = $request->get('band');
         $e->gender = $request->get('gender');
+        $e->single_day = $request->get('singleday');
         $e->save();
 
         Alert::success('Success', 'Member Added');
@@ -249,10 +251,23 @@ class MembersController extends Controller
         return redirect(action('MembersController@index'));
     }
 
-    public function addMemberNote($id)
+    public function addNote($id)
     {
         $member = Member::find($id);
-        return view ('members.addnote', compact('member'));
+        return view ('members.note', compact('member'));
+    }
+    
+    public function addMemberNote(Request $request, $id)
+    {
+        $campid = Campmapping::latest()->value($id);
+
+        $e = New Note();
+        $e->camp_id = $campid;
+        $e->member_id = $id;
+        $e->note = request->get('note');
+        $e->save();
+
+        return redirect(action('MembersController@show' $id));
     }
 
     public function addMedical($id)
@@ -266,6 +281,8 @@ class MembersController extends Controller
         $member = Member::find($id);
         return view ('members.adddietary', compact('member'));
     }
+
+
 
 
 

@@ -100,11 +100,18 @@
                             </div>
                         </div>
 
-
-
-
-
-
+                        <div class="row">
+                            <label class="col-sm-2 col-form-label">Single Day:</label>
+                            <div class="col-sm-10">
+                                <div class="form-group">
+                                    <select class = "form-control" name="singleday">
+                                        <option disabled selected value> -- select an option -- </option>
+                                        <option value="0">No</option>
+                                        <option value="1">Yes</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>                                   
 
                         <div class="card-footer ">
                             <div class="row">

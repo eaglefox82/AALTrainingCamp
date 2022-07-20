@@ -23,9 +23,11 @@ Route::resource('/mess/diet', 'FoodController')->middleware('auth');
 
 //Post Routes
 Route::post('/members/completecheckin/{id}', 'MembersController@completeCheckIn')->middleware('auth');
+Route::post('/members/addMemberNote/{id}', 'MembersController@addMemberNote')->middleware('auth');
 
 //Get Routes
 Route::get('/members/checkin/{id}', 'MembersController@memberCheckIn')->middleware('auth');
+Route::get('/members/addnote/{id}', 'MembersController@addNote')->middleware('auth');
 
 
 
