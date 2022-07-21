@@ -84,11 +84,7 @@
                                     <span class="sidebar-normal"> Member View </span>
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="">
-                                    <span class="sidebar-normal"> Accommodation </span>
-                                </a>
-                            </li>
+
                             <li class="nav-item">
                                 <a class="nav-link" href="">
                                     <span class="sidebar-normal"> Medical </span>
@@ -128,6 +124,13 @@
                             </li>
                         </ul>
                     </div>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ action('HutController@index') }}">
+                        <i class="fa fa-fighter-jet"></i>
+                        <p> Accommodation </p>
+                    </a>
                 </li>
 
                 <li class="nav-item ">

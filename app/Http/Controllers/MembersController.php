@@ -16,8 +16,8 @@ use App\Member;
 use App\Unit;
 use App\Campmapping;
 use App\Flights;
-use App\Member_mapping;
-use App\Notes;
+use App\Membermapping;
+use App\Note;
 
 
 
@@ -120,19 +120,27 @@ class MembersController extends Controller
 
        $member = Member::find($id);
 
-        $membermap = Member_mapping::where('member_id', $id)->get();
 
-        if($membermap !=null)
+
+
+
+       if($member->membermap != null)
         {
-            $mapping = "N";
+
+            $flight = $member->membermap->flight->flight_name;
+            $hut = $member->membermap->room->name;
+            $room = $member->membermap->room->number;
+
         }    else {
-            $mapping = "Y";
+            $flight = 'N/A';
+            $hut = 'N/A';
+            $room = 'N/A';
         }
 
        if ($member !=null)
        {
 
-        return view('members.show', compact('squadron', 'member', 'mapping'));
+        return view('members.show', compact('squadron', 'member', 'flight', 'hut', 'room'));
       }
 
       return redirect(action('MembersController@index'));
@@ -191,7 +199,8 @@ class MembersController extends Controller
 
             return DataTables::of($members)
                 ->addColumn('flightname', function($row){
-                    $flight = !empty($row->membermap->flight_id) ? $row->membermap->flight_id : 'N/A';
+
+                    $flight = !empty($row->membermap->flight_id) ? $row->membermap->flight->flight_name : 'N/A';
                     return $flight;
                 })
 
@@ -203,7 +212,6 @@ class MembersController extends Controller
                     $room = !empty($row->membermap->room->number) ? $row->membermap->room->number : 'N/A';
                     return $room;
                 })
-
                 ->addColumn('checkedin', function($row){
                     if ($row->checked_in =="Y")
                     {
@@ -256,18 +264,18 @@ class MembersController extends Controller
         $member = Member::find($id);
         return view ('members.note', compact('member'));
     }
-    
+
     public function addMemberNote(Request $request, $id)
     {
-        $campid = Campmapping::latest()->value($id);
+        $campid = Campmapping::latest()->value('id');
 
         $e = New Note();
         $e->camp_id = $campid;
         $e->member_id = $id;
-        $e->note = request->get('note');
+        $e->note = $request->get('note');
         $e->save();
 
-        return redirect(action('MembersController@show' $id));
+        return redirect(action('MembersController@show', $id));
     }
 
     public function addMedical($id)

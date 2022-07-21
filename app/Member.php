@@ -16,7 +16,7 @@ class Member extends Model
 
     public function membermap()
     {
-        return $this->hasOne('App\member_mapping', 'member_id', 'id');
+        return $this->hasOne('App\Membermapping', 'member_id', 'id');
     }
 
     public function foodrequirements()

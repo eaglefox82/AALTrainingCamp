@@ -4,13 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class LessionMapping extends Model
+class LessonMapping extends Model
 {
     //
 
     public function lession()
     {
-        return $this->belongsTo('App\Lessions');
+        return $this->belongsTo('App\Lesson');
     }
 
     public function flight()

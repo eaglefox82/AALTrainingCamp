@@ -20,6 +20,7 @@ Route::get('/', 'HomeController@index')->name('home');
 //Resource Routes
 Route::resource('/members', 'MembersController')->middleware('auth');
 Route::resource('/mess/diet', 'FoodController')->middleware('auth');
+Route::resource('/accommodation', 'HutController')->middleware('auth');
 
 //Post Routes
 Route::post('/members/completecheckin/{id}', 'MembersController@completeCheckIn')->middleware('auth');
@@ -34,6 +35,7 @@ Route::get('/members/addnote/{id}', 'MembersController@addNote')->middleware('au
 //Ajax Calls
 Route::get('get/members', 'MembersController@getMemberlist')->name('getMembers');
 Route::get('get/food', 'FoodController@getFoodlist')->name('getFood');
+Route::get('get/huts', 'HutController@getHutlist')->name('getHuts');
 
 
 

@@ -26,28 +26,11 @@
                     </tr>
                     <tr>
                         <th>Flight:</th>
-                        <td style="border-top: 1px #ddd solid">
-                            @if($mapping == 'Y')
-                                {{ $member->membermap->flight->flight_name }}
-                            @else
-                                <span class="badge badge-danger">N/A</span>
-                            @endif
-                        </td>
+                        <td style="border-top: 1px #ddd solid">{{ $flight }}</td>
                         <th>Hut:</th>
-                        <td style="border-top: 1px #ddd solid">
-                            @if($mapping == 'Y')
-                                {{ $member->membermap->room->name }}
-                             @else
-                                <span class="badge badge-danger">N/A</span>
-                            @endif
-                        </td>
+                        <td style="border-top: 1px #ddd solid"> {{ $hut }}</td>
                         <th>Room:</th>
-                         <td style="border-top: 1px #ddd solid">
-                            @if($mapping == 'Y')
-                                {{ $member->membermap->room->number }}
-                             @else
-                                 <span class="badge badge-danger">N/A</span>
-                            @endif
+                         <td style="border-top: 1px #ddd solid">{{ $room }}</td>
                         </td>
                         <th>Form 17:</th>
                         <td style="border-top: 1px #ddd solid">
@@ -74,9 +57,9 @@
                 @endif
                 <div class="pull-right new-button">
                     <a href="{{ action('MembersController@edit', $member->id) }}" class="btn btn-primary btn-round" title="Edit"><i class="fa fa-edit fa-2x"></i> Edit Member</a>
-                    <a href="" data-toggle="modal" data-target="#addmedicalModal" class="btn btn-danger btn-round" title="Add Medical"><i class="fa fa-plus fa-2x"></i> Add Medical</a>
-                    <a href="" data-toggle="modal" data-target="#adddietaryModal" class="btn btn-info btn-round" title="Add Dietary"><i class="fa fa-plus fa-2x"></i> Add Dietary</a>
-                    <a href="" data-toggle="modal" data-target="#addnotesModal" class="btn btn-warning btn-round" title="Add Notes"><i class="fa fa-plus fa-2x"></i> Add Notes</a>
+                    <a href=""  class="btn btn-danger btn-round" title="Add Medical"><i class="fa fa-plus fa-2x"></i> Add Medical</a>
+                    <a href=""  class="btn btn-info btn-round" title="Add Dietary"><i class="fa fa-plus fa-2x"></i> Add Dietary</a>
+                    <a href="{{  action('MembersController@addNote', $member->id) }}" class="btn btn-warning btn-round" title="Add Notes"><i class="fa fa-plus fa-2x"></i> Add Notes</a>
                 </div>
             </div>
         </div>

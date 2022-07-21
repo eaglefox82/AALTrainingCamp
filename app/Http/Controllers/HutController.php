@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DataTables;
 
-use Hut;
-use Campmapping;
-use Member_mapping;
+use App\Huts;
+use App\Campmapping;
+use App\Member_mapping;
 
 class HutController extends Controller
 {
@@ -19,7 +19,9 @@ class HutController extends Controller
     public function index()
     {
         // Get All Huts, group results by Cabin Name
-        $huts = Hut::OrberBy('room_number')->groupBy('cabin_name')->get();
+        $huts = Huts::all();
+
+        $huts = $huts->groupBy('name');
 
 
 
@@ -93,7 +95,7 @@ class HutController extends Controller
     }
 
     // This function is an Ajax request for the Huts Datatable list
-    public function gethutlisting(Request $request)
+    public function gethutlist(Request $request)
     {
         if($request->ajax()){
 
@@ -101,10 +103,10 @@ class HutController extends Controller
 
             $huts = Huts::all();
 
-            return DataTables::of($huts)->with(mapping)->get();
-            ->addColumn('count', function ($row){
-                return $row->mapping->count('id');
-            })
+            return DataTables::of($huts)
+            //->addColumn('count', function ($row){
+             //   return $row->mapping->count('id');
+           // })
             ->make(true);
 
         }

@@ -4,9 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Member_mapping extends Model
+class Membermapping extends Model
 {
     //
+
+    protected $table = 'Member_mappings';
 
     public function member()
     {
