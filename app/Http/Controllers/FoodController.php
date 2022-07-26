@@ -19,7 +19,7 @@ class FoodController extends Controller
     public function index()
     {
         //
-        return view('members.food');
+        return view('members.diet');
     }
 
     /**
@@ -41,6 +41,16 @@ class FoodController extends Controller
     public function store(Request $request)
     {
         //
+        $campid = Campmapping::latest()->value('id');
+
+        $food = new Food;
+        $food->camp_id = $campid;
+        $food->member_id = $request->id;
+        $food->food = $request->food;
+        $food->save();
+
+        return redirect(action('MembersController@show', $request->id));
+
     }
 
     /**
@@ -97,12 +107,12 @@ class FoodController extends Controller
           $members = Food::where('camp_id',$camp)->with('member')->get();
 
          return DataTables::of($members)
-             ->addColumn('flightname', function($row){
-                    return $row->member->membermap->flight->flight_name;
-                })
-                  ->addColumn('unitname', function($row){
-                    return $row->member->unitmap->unit;
-                })
+            ->addColumn('flightname', function($row){
+                return $row->member->membermap->flight->flight_name;
+               })
+            ->addColumn('unitname', function($row){
+                 return $row->member->unitmap->unit;
+             })
             ->make(true);
         }
     }

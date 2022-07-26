@@ -18,6 +18,7 @@ use App\Campmapping;
 use App\Flights;
 use App\Membermapping;
 use App\Note;
+use App\Huts;
 
 
 
@@ -46,7 +47,7 @@ class MembersController extends Controller
     {
         //
 
-       $unit = Unit::all();
+       $unit = Unit::orderBy('unit', 'asc')->get();
        $flight = Flights::all();
 
         return view('members.add',compact('unit', 'flight'));
@@ -220,18 +221,35 @@ class MembersController extends Controller
                         return "No";
                     }
                 })
+                ->addColumn('single_day', function($row){
+                    if ($row->single_day =="Y")
+                    {
+                        return "Yes";
+                    } else {
+                        return "No";
+                    }
+                })
+
+                ->addColumn('coy', function($row){
+                    if ($row->COY =="Y")
+                    {
+                        return "Yes";
+                    } else {
+                        return "No";
+                    }
+                })
 
                 ->addColumn('action', function($row){
 
                     $btn1 = '<a href="'.action('MembersController@show', $row->id).'" target="_blank" title="View" class="btn btn-round btn-success"><i class="fa fa-info"></i></a>';
                     $btn2 = '<a href="'.action('MembersController@memberCheckIn', $row->id).'" title="Check In" class="btn btn-round btn-primary"><i class="fa fa-check-square-o"></i></a>';
 
-                    if ($row->checked_in == 'Y')
-                    {
-                        return $btn1;
-                    } else {
-                        return $btn1 . $btn2;
-                    }
+                         if ($row->checked_in == 'Y')
+                        {
+                            return $btn1;
+                        } else {
+                            return $btn1 . $btn2;
+                        }
                 })
 
 
@@ -288,6 +306,31 @@ class MembersController extends Controller
     {
         $member = Member::find($id);
         return view ('members.adddietary', compact('member'));
+    }
+
+    public function assignMember($id)
+    {
+        $campid = Campmapping::latest()->value('id');
+        $member = Member::find($id);
+        $hut = Huts::all();
+        $flight = Flights::where('camp_id', $campid)->get();
+
+        return view ('members.assign', compact('member', 'hut', 'flight'));
+
+    }
+
+    public function completeAssignMember(Request $request)
+    {
+        $campid = Campmapping::latest()->value('id');
+
+        $mapping = new Membermapping();
+        $mapping->camp_id = $campid;
+        $mapping->member_id = $request->get('id');
+        $mapping->flight_id = $request->get('flight');
+        $mapping->hut_id = $request->get('hut');
+        $mapping->save();
+
+        return redirect(action('MembersController@show', $request->get('id')));
     }
 
 

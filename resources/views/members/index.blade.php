@@ -21,9 +21,11 @@
                             <th class = "text-center">Last Name</th>
                             <th class = "text-center">Rank</th>
                             <th class = "text-center">Squadron</th>
+                            <th class = "text-center">CoY</th>
                             <th class = "text-center">Flight</th>
                             <th class = "text-center">Hut</th>
                             <th class = "text-center">Room</th>
+                            <th class = "text-center">Single Day</th>
                             <th class = "text-center">Checked In</th>
                             <th class = "text-center">Action</th>
                         </thead>
@@ -120,9 +122,11 @@
                 { data: 'last_name', name: 'last_name' },
                 { data: 'rank', name: 'rank' },
                 { data: 'unitmap.unit', name: 'squadron' },
+                { data: 'coy', name: 'coy' },
                 { data: 'flightname', name: 'flight', null: '' },
                 { data: 'hutname', name: 'hut', null: '' },
                 { data: 'roomnumber', name: 'room', null: '' },
+                { data: 'single_day', name: 'single_day', null:''},
                 { data: 'checkedin', name: 'checked_in' },
                 {data: 'action', name: 'action', orderable: false, searchable: false}
             ]

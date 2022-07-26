@@ -10,6 +10,6 @@ class Huts extends Model
 
     public function mapping()
     {
-        return $this->belongsTo('App\Member_mapping', 'hut_id', 'id');
+        return $this->hasMany('App\Membermapping', 'hut_id', 'id');
     }
 }

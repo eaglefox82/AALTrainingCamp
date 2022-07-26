@@ -63,10 +63,10 @@
                             <label class="col-sm-2 col-form-label">Squadron:</label>
                             <div class="col-sm-10">
                                 <div class="form-group">
-                                    <select class="form-control" name="squadron">
+                                    <select class="form-control" class="selectpicker" data-sytle="select-with-transition" name="squadron">
                                         <option disabled selected value> -- select an option -- </option>
                                         @foreach ($unit as $u)
-                                            <option value="{{$u->id}}">{{$u->name}}</option>
+                                            <option value="{{$u->id}}">{{$u->unit}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -74,7 +74,7 @@
                         </div>
 
                         <div class="row">
-                            <label class="col-sm-2 col-form-label">Band:</label>
+                            <label class="col-sm-2 col-form-label">Gender:</label>
                             <div class="col-sm-10">
                                 <div class="form-group">
                                     <select class="form-control" name="gender">
@@ -92,18 +92,25 @@
                                 <div class="form-group">
                                     <select class="form-control" name="band">
                                         <option disabled selected value> -- select an option -- </option>
-                                        <option value="0">No</option>
-                                        <option value="1">Yes</option>
+                                        <option value="N">No</option>
+                                        <option value="Y">Yes</option>
                                     </select>
                                 </div>
                             </div>
                         </div>
 
-
-
-
-
-
+                        <div class="row">
+                            <label class="col-sm-2 col-form-label">Single Day:</label>
+                            <div class="col-sm-10">
+                                <div class="form-group">
+                                    <select class="form-control" name="singleday">
+                                        <option disabled selected value> -- select an option -- </option>
+                                        <option value="N">No</option>
+                                        <option value="Y">Yes</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="card-footer ">
                             <div class="row">
@@ -111,7 +118,7 @@
                                     <a href="{{action('MembersController@index')}}" class="btn btn-fill">Cancel</a>
                                 </div>
                                 <div class="col-md-4">
-                                    <button type="submit" class="btn btn-primary">Complete Check-in</button>
+                                    <button type="submit" class="btn btn-primary">Add Member</button>
                                 </div>
                             </div>
                         </div>

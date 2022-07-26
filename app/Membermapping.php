@@ -8,7 +8,7 @@ class Membermapping extends Model
 {
     //
 
-    protected $table = 'Member_mappings';
+    protected $table = 'member_mappings';
 
     public function member()
     {

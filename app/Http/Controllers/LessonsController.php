@@ -3,13 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DataTables;
 
-use App\Huts;
 use App\Campmapping;
+use App\Flights;
 use App\Membermapping;
 
-class HutController extends Controller
+class LessonsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,14 +17,7 @@ class HutController extends Controller
      */
     public function index()
     {
-        // Get All Huts, group results by Cabin Name
-        $huts = Huts::all();
-
-        $huts = $huts->groupBy('name');
-
-
-
-        return view('huts.index', compact('huts'));
+        //
     }
 
     /**
@@ -58,12 +50,6 @@ class HutController extends Controller
     public function show($id)
     {
         //
-        $campid = Campmapping::latest()->value('id');
-
-        $hutmembers = Membermapping::where('hut_id', $id)->where('Camp_id', $campid)->get();
-
-        return view('huts.show', compact('hutmembers'));
-
     }
 
     /**
@@ -100,30 +86,12 @@ class HutController extends Controller
         //
     }
 
-    // This function is an Ajax request for the Huts Datatable list
-    public function gethutlist(Request $request)
+    public function flights()
     {
-        if($request->ajax()){
+        $campid = Campmapping::latest()->value('id');
+        $flights = Membermapping::where('camp_id', $campid)->get();
+        $names = Flights::where('camp_id', $campid)->get();
 
-            $campid = Campmapping::latest()->value('id');
-
-            $huts = Huts::all();
-
-            return DataTables::of($huts)
-            ->addColumn('count', function ($row){
-               return $row->mapping->count('hut_id');
-            })
-
-            ->addColumn('action', function ($row) {
-                return '<a href="'.action('HutController@show', $row->id).'" class="btn btn-success btn-sm"><i class="fa fa-info"></i></a>';
-            })
-            ->make(true);
-
-        }
+        return view('lessons.flights', compact('flights', 'names'));
     }
-
 }
-
-
-
-

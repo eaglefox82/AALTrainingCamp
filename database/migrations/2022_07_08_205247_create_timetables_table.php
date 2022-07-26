@@ -19,7 +19,7 @@ class CreateTimetablesTable extends Migration
             $table->string('name');
             $table->time('start_time');
             $table->time('end_time');
-            $table->date('day');
+            $table->string('day');
             $table->timestamps();
         });
     }

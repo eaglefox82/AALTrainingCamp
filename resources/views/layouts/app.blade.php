@@ -122,6 +122,11 @@
                                     <span class="sidebar-normal"> Timetable </span>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ action('LessonsController@flights') }}">
+                                    <span class="sidebar-normal"> Flights </span>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </li>

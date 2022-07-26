@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Timetables extends Model
+class Timetable extends Model
 {
     //
 }

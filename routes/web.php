@@ -25,17 +25,20 @@ Route::resource('/accommodation', 'HutController')->middleware('auth');
 //Post Routes
 Route::post('/members/completecheckin/{id}', 'MembersController@completeCheckIn')->middleware('auth');
 Route::post('/members/addMemberNote/{id}', 'MembersController@addMemberNote')->middleware('auth');
+Route::post('/members/adddiet/{id}', 'MembersController@add')->middleware('auth');
+Route::post('/members/addassign', 'MembersController@completeAssignMember')->middleware('auth');
 
 //Get Routes
 Route::get('/members/checkin/{id}', 'MembersController@memberCheckIn')->middleware('auth');
 Route::get('/members/addnote/{id}', 'MembersController@addNote')->middleware('auth');
-
-
+Route::get('/members/assign/{id}', 'MembersController@assignMember')->middleware('auth');
+Route::get('/flights', 'LessonsController@flights')->middleware('auth');
 
 //Ajax Calls
 Route::get('get/members', 'MembersController@getMemberlist')->name('getMembers');
 Route::get('get/food', 'FoodController@getFoodlist')->name('getFood');
 Route::get('get/huts', 'HutController@getHutlist')->name('getHuts');
+
 
 
 

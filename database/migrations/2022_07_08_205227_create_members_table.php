@@ -23,11 +23,12 @@ class CreateMembersTable extends Migration
             $table->string('rank');
             $table->integer('unit_id')->nullable();
             $table->integer('duty_nco')->nullable();
-            $table->string('band')->default(false);
-            $table->string('single_day')->dafault(false);
-            $table->string('form17')->default(false);
-            $table->string('paid')->default(false);
-            $table->string('checked_in')->default(false);
+            $table->string('band')->default('N');
+            $table->string('single_day')->default('N');
+            $table->string('form17')->default('N');
+            $table->string('paid')->default('N');
+            $table->string('coy')->default('N');
+            $table->string('checked_in')->default('N');
             $table->timestamps();
         });
     }

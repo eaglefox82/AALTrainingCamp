@@ -55,6 +55,14 @@
                         <a href="{{ Action('MembersController@memberCheckIn', $member->id) }}" class="btn btn-success btn-round" title="Check In"><i class="fa fa-check fa-2x"></i> Check Member In</a>
                     </div>
                 @endif
+
+                @if ($hut == 'N/A')
+                    <div class="pull-left new button">
+                        <a href="{{ Action('MembersController@assignMember', $member->id) }}" class="btn btn-primary btn-round" title="Assign"><i class="fa fa-plus fa-2x"></i> Assign Member</a>
+                    </div>
+                @endif
+
+
                 <div class="pull-right new-button">
                     <a href="{{ action('MembersController@edit', $member->id) }}" class="btn btn-primary btn-round" title="Edit"><i class="fa fa-edit fa-2x"></i> Edit Member</a>
                     <a href=""  class="btn btn-danger btn-round" title="Add Medical"><i class="fa fa-plus fa-2x"></i> Add Medical</a>
