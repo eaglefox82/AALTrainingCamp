@@ -58,6 +58,36 @@ class MembersSeeder extends Seeder
         Member::create(['id' => '39', 'membership' => 'N23869', 'first_name' => 'Kyle', 'last_name' => 'Chen', 'gender' => 'M', 'rank' => 'Cdt', 'unit_id' => '18', 'paid' => 'Y', 'camp_id' => '1']);
         Member::create(['id' => '40', 'membership' => 'W13138', 'first_name' => 'Angeline', 'last_name' => 'OHare', 'gender' => 'F', 'rank' => 'Snr Cdt', 'unit_id' => '24', 'paid' => 'N', 'camp_id' => '1']);
 
+        Member::create(['id' => '41', 'membership' => 'N23795', 'first_name' => 'Cadel', 'last_name' => 'Abi-Hana', 'gender' => 'M', 'rank' => 'Jnr Cdt', 'unit_id' => '31', 'paid' => 'Y', 'camp_id' => '1']);
+        Member::create(['id' => '42', 'membership' => 'N23794', 'first_name' => 'Christian', 'last_name' => 'Abi-Hana', 'gender' => 'M', 'rank' => 'Cdt', 'unit_id' => '31', 'paid' => 'Y', 'camp_id' => '1']);
+        Member::create(['id' => '43', 'membership' => 'N23264', 'first_name' => 'Yash', 'last_name' => 'Alghare', 'gender' => 'M', 'rank' => 'L/Cdt', 'unit_id' => '31', 'paid' => 'Y', 'camp_id' => '1']);
+        Member::create(['id' => '44', 'membership' => 'N23801', 'first_name' => 'Nicholas', 'last_name' => 'Abi-Hana', 'gender' => 'M', 'rank' => 'Jnr Cdt', 'unit_id' => '31', 'paid' => 'Y', 'camp_id' => '1']);
+        Member::create(['id' => '45', 'membership' => '18185', 'first_name' => 'Raymond', 'last_name' => 'Bell', 'gender' => 'M', 'rank' => 'Comr', 'unit_id' => '31', 'paid' => 'Y', 'camp_id' => '1']);
+        Member::create(['id' => '46', 'membership' => 'N23522', 'first_name' => 'Brendon', 'last_name' => 'DeMarchi', 'gender' => 'M', 'rank' => 'Cdt', 'unit_id' => '31', 'paid' => 'Y', 'camp_id' => '1']);
+        Member::create(['id' => '47', 'membership' => 'N23576', 'first_name' => 'Oliver', 'last_name' => 'Dorrah', 'gender' => 'M', 'rank' => 'Cdt', 'unit_id' => '31', 'paid' => 'Y', 'camp_id' => '1']);
+        Member::create(['id' => '48', 'membership' => 'N22718', 'first_name' => 'James', 'last_name' => 'Fan', 'gender' => 'M', 'rank' => 'L/Cdt', 'unit_id' => '31', 'paid' => 'Y', 'camp_id' => '1']);
+        Member::create(['id' => '49', 'membership' => 'N21432', 'first_name' => 'Lachlan', 'last_name' => 'Hyde', 'gender' => 'M', 'rank' => '2nd Off', 'unit_id' => '31', 'paid' => 'Y', 'camp_id' => '1']);
+        Member::create(['id' => '50', 'membership' => 'N23018', 'first_name' => 'Zaccary', 'last_name' => 'Landcaster', 'gender' => 'M', 'rank' => 'Cpl', 'unit_id' => '31', 'paid' => 'Y', 'camp_id' => '1']);
+        Member::create(['id' => '51', 'membership' => 'N23646', 'first_name' => 'Andrew', 'last_name' => 'Mayorga', 'gender' => 'M', 'rank' => 'W/O', 'unit_id' => '31', 'paid' => 'Y', 'camp_id' => '1']);
+        Member::create(['id' => '52', 'membership' => 'N22459', 'first_name' => 'Brendan', 'last_name' => 'Mayorga', 'gender' => 'M', 'rank' => 'Cpl', 'unit_id' => '31', 'paid' => 'Y', 'camp_id' => '1']);
+        Member::create(['id' => '53', 'membership' => 'N23266', 'first_name' => 'Emilio', 'last_name' => 'Munoz', 'gender' => 'M', 'rank' => 'Cdt', 'unit_id' => '31', 'paid' => 'Y', 'camp_id' => '1']);
+        Member::create(['id' => '54', 'membership' => 'N23245', 'first_name' => 'Kushal', 'last_name' => 'Parag', 'gender' => 'M', 'rank' => 'Jnr Cdt', 'unit_id' => '31', 'paid' => 'Y', 'camp_id' => '1']);
+        Member::create(['id' => '55', 'membership' => 'N21800', 'first_name' => 'Andrew', 'last_name' => 'Passmore', 'gender' => 'M', 'rank' => 'W/O', 'unit_id' => '31', 'paid' => 'Y', 'camp_id' => '1']);
+        Member::create(['id' => '56', 'membership' => 'N23699', 'first_name' => 'Brandyn', 'last_name' => 'Sauer', 'gender' => 'M', 'rank' => 'Jnr Cdt', 'unit_id' => '31', 'paid' => 'Y', 'camp_id' => '1']);
+        Member::create(['id' => '57', 'membership' => 'N22340', 'first_name' => 'Martin', 'last_name' => 'Sauer', 'gender' => 'M', 'rank' => 'Sqn Lt', 'unit_id' => '31', 'paid' => 'Y', 'camp_id' => '1']);
+        Member::create(['id' => '58', 'membership' => 'N21680', 'first_name' => 'Harrison', 'last_name' => 'Tarranec', 'gender' => 'M', 'rank' => '2nd Off', 'unit_id' => '31', 'paid' => 'Y', 'camp_id' => '1']);
+        Member::create(['id' => '59', 'membership' => 'N23574', 'first_name' => 'Oliver', 'last_name' => 'Van Kempen', 'gender' => 'M', 'rank' => 'Cdt', 'unit_id' => '31', 'paid' => 'Y', 'camp_id' => '1']);
+        Member::create(['id' => '60', 'membership' => 'New', 'first_name' => 'Ryan', 'last_name' => 'Van Kempen', 'gender' => 'M', 'rank' => 'Cdt', 'unit_id' => '31', 'paid' => 'Y', 'camp_id' => '1']);
+        Member::create(['id' => '61', 'membership' => 'New', 'first_name' => 'Jad', 'last_name' => 'Abuquba', 'gender' => 'M', 'rank' => 'Cdt', 'unit_id' => '30', 'paid' => 'Y', 'camp_id' => '1']);
+
+        Member::create(['id' => '62', 'membership' => 'N23496', 'first_name' => 'Kael', 'last_name' => 'Austin', 'gender' => 'M', 'rank' => 'Cdt', 'unit_id' => '30', 'paid' => 'Y', 'camp_id' => '1']);
+        Member::create(['id' => '63', 'membership' => 'N23529', 'first_name' => 'Joshua', 'last_name' => 'Mansour', 'gender' => 'M', 'rank' => 'Cdt', 'unit_id' => '30', 'paid' => 'Y', 'camp_id' => '1']);
+        Member::create(['id' => '64', 'membership' => 'N23838', 'first_name' => 'Jaylan', 'last_name' => 'Tran', 'gender' => 'M', 'rank' => 'Cdt', 'unit_id' => '30', 'paid' => 'Y', 'camp_id' => '1']);
+        Member::create(['id' => '65', 'membership' => 'N23554', 'first_name' => 'Robert', 'last_name' => 'Allam', 'gender' => 'M', 'rank' => 'L/Cdt', 'unit_id' => '4', 'paid' => 'Y', 'camp_id' => '1']);
+        Member::create(['id' => '66', 'membership' => 'N23427', 'first_name' => 'Johnathan', 'last_name' => 'Nolan', 'gender' => 'M', 'rank' => 'Sgt', 'unit_id' => '28', 'paid' => 'Y', 'camp_id' => '1']);
+        
+
+
     }
 
 }
