@@ -15,6 +15,9 @@ class CreateLessionMappingsTable extends Migration
     {
         Schema::create('lession_mappings', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('period_id');
+            $table->string('lession_id');
+            $table->string('flight_id');
             $table->timestamps();
         });
     }

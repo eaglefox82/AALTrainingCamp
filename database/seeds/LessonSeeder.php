@@ -36,7 +36,7 @@ class LessonSeeder extends Seeder
         lesson::create(['id' => 18, 'camp_id' => '1', 'name' => 'Group Review Process']);
         lesson::create(['id' => 19, 'camp_id' => '1', 'name' => 'Team Building 4']);
         lesson::create(['id' => 20, 'camp_id' => '1', 'name' => 'Leadership Style']);
-        lesson::create(['id' => 16, 'camp_id' => '1', 'name' => 'Camp De-Brief']);
+        lesson::create(['id' => 21, 'camp_id' => '1', 'name' => 'Camp De-Brief']);
 
 
 

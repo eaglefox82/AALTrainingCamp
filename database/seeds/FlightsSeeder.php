@@ -18,9 +18,10 @@ class FlightsSeeder extends Seeder
         Flights::truncate();
 
         Flights::create(['id' => '1', 'camp_id' => '1', 'flight_number' => '1', 'flight_name' => 'Executive Flight']);
-        Flights::create(['id' => '2', 'camp_id' => '1', 'flight_number' => '2', 'flight_name' => 'Officers']);
-        Flights::create(['id' => '3', 'camp_id' => '1', 'flight_number' => '3', 'flight_name' => 'Cadets']);
-        Flights::create(['id' => '4', 'camp_id' => '1', 'flight_number' => '4', 'flight_name' => 'Junior Cadets']);
+        Flights::create(['id' => '2', 'camp_id' => '1', 'flight_number' => '2', 'flight_name' => 'Flight A']);
+        Flights::create(['id' => '3', 'camp_id' => '1', 'flight_number' => '3', 'flight_name' => 'Flight B']);
+        Flights::create(['id' => '4', 'camp_id' => '1', 'flight_number' => '4', 'flight_name' => 'Flight C']);
 
     }
 }
+

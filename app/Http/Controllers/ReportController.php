@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use PDF;
 
-use App\Campmapping;
-use App\Flights;
-use App\Membermapping;
+Use App\Flights;
+Use App\Campmapping;
+Use App\Membermapping;
 
-class LessonsController extends Controller
+class ReportController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -86,19 +88,18 @@ class LessonsController extends Controller
         //
     }
 
-    public function flights()
+    public function RollCall()
     {
+
         $campid = Campmapping::latest()->value('id');
         $flights = Membermapping::where('camp_id', $campid)->get();
         $names = Flights::where('camp_id', $campid)->get();
 
-        return view('lessons.flights', compact('flights', 'names'));
-    }
+        $pdf = PDF::loadView('reports.rollcall', compact('flights', 'names'));
 
-    public function timetable()
-    {
-        $campid = Campmapping::latest()->value('id');
+        return $pdf->download('rollcall.pdf');
+        //return view('reports.rollcall', compact('flights', 'names'));
 
-        return view('lessons.timetable', compact('flights', 'names'));
+
     }
 }

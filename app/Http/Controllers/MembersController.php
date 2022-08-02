@@ -201,7 +201,7 @@ class MembersController extends Controller
             return DataTables::of($members)
                 ->addColumn('flightname', function($row){
 
-                    $flight = !empty($row->membermap->flight_id) ? $row->membermap->flight->flight_name : 'N/A';
+                    $flight = !empty($row->membermap->flight_id) ? $row->membermap->flight_name : 'N/A';
                     return $flight;
                 })
 

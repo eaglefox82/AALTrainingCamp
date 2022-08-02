@@ -28,11 +28,13 @@ Route::post('/members/addMemberNote/{id}', 'MembersController@addMemberNote')->m
 Route::post('/members/adddiet/{id}', 'MembersController@add')->middleware('auth');
 Route::post('/members/addassign', 'MembersController@completeAssignMember')->middleware('auth');
 
+
 //Get Routes
 Route::get('/members/checkin/{id}', 'MembersController@memberCheckIn')->middleware('auth');
 Route::get('/members/addnote/{id}', 'MembersController@addNote')->middleware('auth');
 Route::get('/members/assign/{id}', 'MembersController@assignMember')->middleware('auth');
 Route::get('/flights', 'LessonsController@flights')->middleware('auth');
+Route::get('/flights/rollcall', 'ReportController@RollCall')->middleware('auth');
 
 //Ajax Calls
 Route::get('get/members', 'MembersController@getMemberlist')->name('getMembers');

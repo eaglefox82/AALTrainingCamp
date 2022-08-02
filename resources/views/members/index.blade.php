@@ -121,7 +121,7 @@
                 { data: 'first_name', name: 'first_name' },
                 { data: 'last_name', name: 'last_name' },
                 { data: 'rank', name: 'rank' },
-                { data: 'unitmap.unit', name: 'squadron' },
+                { data: 'unitmap.unit', name: 'squadron'},
                 { data: 'coy', name: 'coy' },
                 { data: 'flightname', name: 'flight', null: '' },
                 { data: 'hutname', name: 'hut', null: '' },

@@ -8,4 +8,5 @@ class Lesson extends Model
 {
     //
     protected $table = 'Lessons';
+
 }
