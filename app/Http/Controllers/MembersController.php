@@ -342,7 +342,7 @@ class MembersController extends Controller
         return redirect(action('MembersController@show', $request->get('id')));
     }
 
-    public function addMemberDiet(Request $request, $id)
+    public function addMemberMedical(Request $request, $id)
     {
         $campid = Campmapping::latest()->value('id');
 
@@ -356,7 +356,7 @@ class MembersController extends Controller
         return redirect(action('MembersController@show', $id));
     }
 
-    public function addMemberMedical(Request $request, $id)
+    public function addMemberDiet(Request $request, $id)
     {
         $campid = Campmapping::latest()->value('id');
 
