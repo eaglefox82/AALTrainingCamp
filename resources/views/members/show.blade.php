@@ -65,15 +65,79 @@
 
                 <div class="pull-right new-button">
                     <a href="{{ action('MembersController@edit', $member->id) }}" class="btn btn-primary btn-round" title="Edit"><i class="fa fa-edit fa-2x"></i> Edit Member</a>
-                    <a href=""  class="btn btn-danger btn-round" title="Add Medical"><i class="fa fa-plus fa-2x"></i> Add Medical</a>
-                    <a href=""  class="btn btn-info btn-round" title="Add Dietary"><i class="fa fa-plus fa-2x"></i> Add Dietary</a>
+                    <a href="{{  action('MembersController@addMedical', $member->id) }}"  class="btn btn-danger btn-round" title="Add Medical"><i class="fa fa-plus fa-2x"></i> Add Medical</a>
+                    <a href="{{  action('MembersController@addDiet', $member->id) }}"  class="btn btn-info btn-round" title="Add Dietary"><i class="fa fa-plus fa-2x"></i> Add Dietary</a>
                     <a href="{{  action('MembersController@addNote', $member->id) }}" class="btn btn-warning btn-round" title="Add Notes"><i class="fa fa-plus fa-2x"></i> Add Notes</a>
                 </div>
             </div>
         </div>
-
     </div>
+    </div>
+
+
+       <div class = "row">
+
+            <div class = col-sm-4>
+                <div class = "card">
+                    <div class = "card-header card-header-icon card-header-rose pull-center">
+                        <h2 class = "card-title text-center">Diet</h2>
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            @foreach($diet as $diet)
+                            <tr>
+                                <td style="border-top: 1px #ddd solid" class="text-center">{{ $diet->food }}</td>
+                            </tr>
+                            @endforeach
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class = col-sm-4>
+                <div class = "card">
+                    <div class = "card-header card-header-icon card-header-rose pull-center">
+                        <h2 class = "card-title text-center">Medical</h2>
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            @foreach($medical as $medical)
+                            <tr>
+                                <td style="border-top: 1px #ddd solid" class="text-center">{{ $medical->condition }}</td>
+                                <td style="border-top: 1px #ddd solid" class="text-center">{{ $medical->notes }}</td>
+                            </tr>
+                            @endforeach
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class = col-sm-4>
+                <div class = "card">
+                    <div class = "card-header card-header-icon card-header-rose pull-center">
+                        <h2 class = "card-title text-center">Notes</h2>
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            @foreach($note as $note)
+                            <tr>
+                                <td style="border-top: 1px #ddd solid" class="text-center">{{ $note->note }}</td>
+                            </tr>
+                            @endforeach
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+       </div>
+
+
+
+
 </div>
+
+
 
 
 @stop

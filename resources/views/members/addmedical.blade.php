@@ -7,10 +7,10 @@
             <div class="card ">
                 <div class="card-header card-header-rose card-header-text">
                     <div class="card-text">
-                        <h4 class="card-title">Add Diet Requirements for {{ $member->first_name }} {{ $member->last_name }}</h4>
+                        <h4 class="card-title">Add Medical for {{ $member->first_name }} {{ $member->last_name }}</h4>
                     </div>
                 </div>
-                {!! Form::open(array('action' => ['MembersController@addMemberDiet', $member->id],'method'=>'POST', 'class'=>'form-horizontal')) !!}
+                {!! Form::open(array('action' => ['MembersController@addMemberMedical', $member->id],'method'=>'POST', 'class'=>'form-horizontal')) !!}
                     <div class="card-body">
                         @if (count($errors) > 0)
                             <div class="alert alert-danger">
@@ -33,10 +33,19 @@
                         </div>
 
                         <div class="row">
-                            <label class="col-sm-2 col-form-label">Diet Requirement:</label>
+                            <label class="col-sm-2 col-form-label">Condition:</label>
                             <div class="col-sm-10">
                                 <div class="form-group">
-                                    <Input type="text" class="form-control" name="food" value="" required>
+                                    <Input type="text" class="form-control" name="condition" value="" required>
+                                </div>
+                            </div>
+                        </div>
+
+                         <div class="row">
+                            <label class="col-sm-2 col-form-label">Notes:</label>
+                            <div class="col-sm-10">
+                                <div class="form-group">
+                                    <Input type="text" class="form-control" name="notes" value="" required>
                                 </div>
                             </div>
                         </div>

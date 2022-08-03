@@ -25,13 +25,16 @@ Route::resource('/accommodation', 'HutController')->middleware('auth');
 //Post Routes
 Route::post('/members/completecheckin/{id}', 'MembersController@completeCheckIn')->middleware('auth');
 Route::post('/members/addMemberNote/{id}', 'MembersController@addMemberNote')->middleware('auth');
-Route::post('/members/adddiet/{id}', 'MembersController@add')->middleware('auth');
+Route::post('/members/addMemberDiet/{id}', 'MembersController@addMemberDiet')->middleware('auth');
+Route::post('/members/addMemberMedical/{id}', 'MembersController@addMemberMedical')->middleware('auth');
 Route::post('/members/addassign', 'MembersController@completeAssignMember')->middleware('auth');
 
 
 //Get Routes
 Route::get('/members/checkin/{id}', 'MembersController@memberCheckIn')->middleware('auth');
 Route::get('/members/addnote/{id}', 'MembersController@addNote')->middleware('auth');
+Route::get('/members/addmedical/{id}', 'MembersController@addMedical')->middleware('auth');
+Route::get('/members/adddiet/{id}', 'MembersController@addDiet')->middleware('auth');
 Route::get('/members/assign/{id}', 'MembersController@assignMember')->middleware('auth');
 Route::get('/flights', 'LessonsController@flights')->middleware('auth');
 Route::get('/flights/rollcall', 'ReportController@RollCall')->middleware('auth');

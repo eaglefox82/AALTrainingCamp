@@ -19,6 +19,9 @@ use App\Flights;
 use App\Membermapping;
 use App\Note;
 use App\Huts;
+use App\Medical;
+use App\Food;
+
 
 
 
@@ -121,6 +124,12 @@ class MembersController extends Controller
 
        $member = Member::find($id);
 
+       $note = Note::where('member_id', $id)->get();
+
+       $medical = Medical::where('member_id', $id)->get();
+
+       $diet = Food::where('member_id', $id)->get();
+
 
 
 
@@ -141,7 +150,7 @@ class MembersController extends Controller
        if ($member !=null)
        {
 
-        return view('members.show', compact('squadron', 'member', 'flight', 'hut', 'room'));
+        return view('members.show', compact('squadron', 'member', 'flight', 'hut', 'room', 'note', 'medical', 'diet'));
       }
 
       return redirect(action('MembersController@index'));
@@ -201,7 +210,7 @@ class MembersController extends Controller
             return DataTables::of($members)
                 ->addColumn('flightname', function($row){
 
-                    $flight = !empty($row->membermap->flight_id) ? $row->membermap->flight_name : 'N/A';
+                    $flight = !empty($row->membermap->flight_id) ? $row->membermap->flight->flight_name : 'N/A';
                     return $flight;
                 })
 
@@ -302,10 +311,10 @@ class MembersController extends Controller
         return view ('members.addmedical', compact('member'));
     }
 
-    public function addDietary($id)
+    public function addDiet($id)
     {
         $member = Member::find($id);
-        return view ('members.adddietary', compact('member'));
+        return view ('members.adddiet', compact('member'));
     }
 
     public function assignMember($id)
@@ -331,6 +340,33 @@ class MembersController extends Controller
         $mapping->save();
 
         return redirect(action('MembersController@show', $request->get('id')));
+    }
+
+    public function addMemberDiet(Request $request, $id)
+    {
+        $campid = Campmapping::latest()->value('id');
+
+        $e = New Medical();
+        $e->camp_id = $campid;
+        $e->member_id = $id;
+        $e->condition = $request->get('condition');
+        $e->note = $request->get('notes');
+        $e->save();
+
+        return redirect(action('MembersController@show', $id));
+    }
+
+    public function addMemberMedical(Request $request, $id)
+    {
+        $campid = Campmapping::latest()->value('id');
+
+        $e = New Food();
+        $e->camp_id = $campid;
+        $e->member_id = $id;
+        $e->food = $request->get('food');
+        $e->save();
+
+        return redirect(action('MembersController@show', $id));
     }
 
 

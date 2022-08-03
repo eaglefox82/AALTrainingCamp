@@ -24,5 +24,20 @@ class Member extends Model
         return $this->hasOne('App\Food', 'member_id', 'id');
     }
 
+    public function note()
+    {
+        return $this->hasMany('App\Note', 'member_id', 'id');
+    }
+
+    public function medical()
+    {
+        return $this->hasMany('App\Medical', 'member_id', 'id');
+    }
+
+    public function food()
+    {
+        return $this->hasMany('App\Food', 'member_id', 'id');
+    }
+
 
 }

@@ -7,7 +7,7 @@
             <div class="card ">
                 <div class="card-header card-header-rose card-header-text">
                     <div class="card-text">
-                        <h4 class="card-title">Check-in Member</h4>
+                        <h4 class="card-title">Add Note</h4>
                     </div>
                 </div>
                 {!! Form::open(array('action' => ['MembersController@addMemberNote', $member->id],'method'=>'POST', 'class'=>'form-horizontal')) !!}
@@ -29,27 +29,6 @@
                                 <div class="form-group">
                                     <span>
                                         {{$member->first_name}} {{$member->last_name}} ({{$member->unitmap->unit}})
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <label class="col-sm-2 col-form-label">Flight:</label>
-                            <div class="col-sm-2">
-                                <div class="form-group">
-                                    <span>
-                                        {{$member->membermap->flight->flight_name}}
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                         <div class="row">
-                            <label class="col-sm-2 col-form-label">Hut and Room:</label>
-                            <div class="col-sm-10">
-                                <div class="form-group">
-                                    <span>
-                                        Hut: {{$member->membermap->room->name}} - Room: {{ $member->membermap->room->number }}
                                     </span>
                                 </div>
                             </div>
