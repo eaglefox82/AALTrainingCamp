@@ -101,34 +101,10 @@
 
 
                <li class="nav-item ">
-                    <a class="nav-link" data-toggle="collapse" href="#lessions">
+                    <a class="nav-link"  href="{{ action('LessonsController@flights') }}">
                         <i class="fa fa-fighter-jet"></i>
-                        <p> Lessions  <b class="caret"></b></p>
+                        <p> Flights </p>
                     </a>
-                    <div class="collapse" id="lessions">
-                        <ul class="nav">
-                            <li class="nav-item">
-                                <a class="nav-link" href="">
-                                    <span class="sidebar-normal"> Lessions </span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="">
-                                    <span class="sidebar-normal"> Instructors </span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="">
-                                    <span class="sidebar-normal"> Timetable </span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ action('LessonsController@flights') }}">
-                                    <span class="sidebar-normal"> Flights </span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
                 </li>
 
                 <li class="nav-item">
@@ -139,36 +115,15 @@
                 </li>
 
                 <li class="nav-item ">
-                    <a class="nav-link" data-toggle="collapse" href="#campmanagement">
+                    <a class="nav-link" href="{{  action('ReportController@index') }}">
                         <i class="fa fa-fighter-jet"></i>
-                        <p> Camp Management  <b class="caret"></b></p>
+                        <p>Reports</p>
                     </a>
-                    <div class="collapse" id="campmanagement">
-                        <ul class="nav">
-                            <li class="nav-item">
-                                <a class="nav-link" href="">
-                                    <span class="sidebar-normal"> Camps </span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="">
-                                    <span class="sidebar-normal"> Accounting </span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
                 </li>
 
 
                 <li class="nav-item">
-                    <a class="nav-link" href="https://trainingcamp.falcongaming.com.au">
-                        <i class="fa fa-handshake-o"></i>
-                        <p>Admin Managment</p>
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="">
+                    <a class="nav-link" href="https://trainingcamp.falcongaming.com.au" target="_blank">
                         <i class="fa fa-id-card-o"></i>
                         <p>Uniform Inspection</p>
                     </a>

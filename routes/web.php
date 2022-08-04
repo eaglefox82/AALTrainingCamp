@@ -21,6 +21,7 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::resource('/members', 'MembersController')->middleware('auth');
 Route::resource('/mess/diet', 'FoodController')->middleware('auth');
 Route::resource('/accommodation', 'HutController')->middleware('auth');
+Route::resource('/reports', 'ReportController')->middleware('auth');
 
 //Post Routes
 Route::post('/members/completecheckin/{id}', 'MembersController@completeCheckIn')->middleware('auth');
@@ -41,12 +42,20 @@ Route::get('/flights/rollcall', 'ReportController@RollCall')->middleware('auth')
 
 //Report Routes
 Route::get('/flights/rollcall', 'ReportController@RollCall')->middleware('auth');
-Route::get('/flights/RoomCall', 'ReportController@RollCall')->middleware('auth');
+Route::get('/flights/RoomCall', 'ReportController@RoomRoll')->middleware('auth');
 
 //Ajax Calls
 Route::get('get/members', 'MembersController@getMemberlist')->name('getMembers');
 Route::get('get/food', 'FoodController@getFoodlist')->name('getFood');
 Route::get('get/huts', 'HutController@getHutlist')->name('getHuts');
+
+
+//Development Routes
+Route::get('/autoload', function()
+{
+    \Artisan::call('dump-autoload');
+    echo 'dump-autoload complete';
+});
 
 
 

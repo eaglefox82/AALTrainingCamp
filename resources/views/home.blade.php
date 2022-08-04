@@ -55,7 +55,7 @@
                         <div class="card-icon">
                             <i class="fa fa-male fa-2x"></i>
                         </div>
-                        <p class="card-category">Total Males<br>{{ number_format(($incamp->where('gender', 'M')->count())/$incamp,2) }}%<br></p>
+                        <p class="card-category">Total Males<br>@if($incamp->count() == 0) 0 @else {{ number_format(($incamp->where('gender', 'M')->count()/$incamp->count())*100,2) }}@endif%<br></p>
                         <h3 class="card-title">{{ $incamp->where('gender', 'M')->count() }}</h3>
                     </div>
                     <div class="card-footer">
@@ -69,7 +69,7 @@
                         <div class="card-icon">
                             <i class="fa fa-female fa-2x"></i>
                         </div>
-                        <p class="card-category">Total Females<br>{{ number_format(($incamp->where('gender', 'F')->count())/$incamp,2) }}%<br></p>
+                        <p class="card-category">Total Females<br>@if($incamp->count() == 0) 0 @else {{ number_format(($incamp->where('gender', 'F')->count()/$incamp->count())*100,2) }}@endif%<br></p>
                         <h3 class="card-title">{{  $incamp->where('gender', 'F')->count() }}</h3>
                     </div>
                     <div class="card-footer">

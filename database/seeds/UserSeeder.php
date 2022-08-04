@@ -48,7 +48,7 @@ class UserSeeder extends Seeder
 		$admin->first_name = "Jeff";
 		$admin->last_name = "Remington";
 		$admin->username = "j.remington";
-		$admin->password = bcrypt('w8228');
+		$admin->password = bcrypt('n8228');
         $admin->save();
 
         $admin = new User();
