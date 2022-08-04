@@ -8,4 +8,9 @@ class medical extends Model
 {
     //
     protected $table = 'medical_conditiions';
+
+    public function member()
+    {
+        return $this->belongsTo('App\Member');
+    }
 }

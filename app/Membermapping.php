@@ -20,4 +20,9 @@ class Membermapping extends Model
         return $this->hasOne('App\huts', 'id', 'hut_id');
     }
 
+    public function flight()
+    {
+        return $this->hasOne('App\Flights', 'id', 'flight_id');
+    }
+
 }

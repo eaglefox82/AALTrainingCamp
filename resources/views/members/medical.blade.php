@@ -9,7 +9,7 @@
         <div class = "col-sm-12">
             <div class = "card">
                 <div class = "card-header card-header-icon card-header-rose pull-center">
-                    <h2 class = "card-title text-center">Members with Dietary Requirements</h2>
+                    <h2 class = "card-title text-center">Members with Medical Requirements</h2>
                 </div>
 
                 <div class="table-responsive">
@@ -18,10 +18,8 @@
                             <th class = "text-center">Membership Number</th>
                             <th class = "text-center">First Name</th>
                             <th class = "text-center">Last Name</th>
-                            <th class = "text-center">Rank</th>
-                            <th class = "text-center">Squadron</th>
-                            <th class = "text-center">Flight</th>
-                            <th class = "text-center">Dietary Requirements</th>
+                            <th class = "text-center">Condition</th>
+                            <th class = "text-center">Notes</th>
                         </thead>
                         <tbody class = "text-center">
                         </tbody>
@@ -49,15 +47,13 @@
         var table=$('#member-table').DataTable({
             processing: true,
             serverSide: true,
-            ajax: '{!! route('getFood') !!}',
+            ajax: '{!! route('getMedical') !!}',
             columns: [
-                { data: 'member.membership', name: 'membership', },
-                { data: 'member.first_name', name: 'first_name' },
-                { data: 'member.last_name', name: 'last_name' },
-                { data: 'member.rank', name: 'rank' },
-                { data: 'unitname', name: 'unitname'},
-                { data: 'flightname', name: 'flightname'},
-                { data: 'food', name: 'food' },
+                { data: 'membership', name: 'membership', },
+                { data: 'first_name', name: 'first_name' },
+                { data: 'last_name', name: 'last_name' },
+                { data: 'condition', name: 'condition' },
+                { data: 'notes', name: 'notes' },
                // {data: 'action', name: 'action', orderable: false, searchable: false}
             ]
         })

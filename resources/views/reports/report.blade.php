@@ -28,7 +28,7 @@
                                     <td>Room Listing Report</td>
                                     <td>Creates Room List Sheets for Duty Staff</td>
                                     <td>
-                                        <a href=" {{  action('ReportController@RollCall') }}"  title="Run Report" class="btn btn-round btn-success"><i class="fa fa-list-alt"></i></a>
+                                        <a href=" {{  action('ReportController@RoomRoll') }}"  title="Run Report" class="btn btn-round btn-success"><i class="fa fa-list-alt"></i></a>
                                     </td>
                                 </tr>
 
@@ -44,7 +44,7 @@
                                     <td>Medical Report</td>
                                     <td>List all medical notes</td>
                                     <td>
-                                        <a href=""  title="Run Report" class="btn btn-round btn-gary"><i class="fa fa-list-alt"></i></a>
+                                        <a href="{{ action('ReportController@MedicalList') }}"  title="Run Report" class="btn btn-round btn-success"><i class="fa fa-list-alt"></i></a>
                                     </td>
                                 </tr>
                         </tbody>

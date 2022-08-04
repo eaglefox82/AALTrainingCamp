@@ -45,7 +45,7 @@
                             <label class="col-sm-2 col-form-label">Notes:</label>
                             <div class="col-sm-10">
                                 <div class="form-group">
-                                    <Input type="text" class="form-control" name="notes" value="" required>
+                                    <Input type="text" class="form-control" name="notes" value="">
                                 </div>
                             </div>
                         </div>

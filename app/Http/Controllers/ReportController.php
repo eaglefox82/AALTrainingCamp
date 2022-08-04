@@ -9,6 +9,8 @@ use PDF;
 Use App\Flights;
 Use App\Campmapping;
 Use App\Membermapping;
+use App\Huts;
+use App\Medical;
 
 class ReportController extends Controller
 {
@@ -111,7 +113,20 @@ class ReportController extends Controller
         $rooms = Membermapping::where('camp_id', $campid)->get();
         $huts = Huts::all();
 
-        $pdf = PDF::loadView('reports.RoomRoll', compact('rooms', 'huts'));
+        $pdf = PDF::loadView('reports.RoomCall', compact('rooms', 'huts'));
+
+        return $pdf->download('RoomCall.pdf');
         //return view('reports.RoomRoll', compact('rooms','huts'));
+    }
+
+    public function MedicalList()
+    {
+        $campid = Campmapping::latest()->value('id');
+        $medical = Medical::where('camp_id', $campid)->get();
+
+        $pdf = PDF::loadView('reports.medical', compact('medical'));
+
+        //return $pdf->download('MedicalList.pdf');
+        return view('reports.medical', compact('medical'));
     }
 }

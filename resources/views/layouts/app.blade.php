@@ -86,7 +86,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="">
+                                <a class="nav-link" href="{{  action('MembersController@Medical') }}">
                                     <span class="sidebar-normal"> Medical </span>
                                 </a>
                             </li>

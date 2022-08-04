@@ -39,15 +39,18 @@ Route::get('/members/adddiet/{id}', 'MembersController@addDiet')->middleware('au
 Route::get('/members/assign/{id}', 'MembersController@assignMember')->middleware('auth');
 Route::get('/flights', 'LessonsController@flights')->middleware('auth');
 Route::get('/flights/rollcall', 'ReportController@RollCall')->middleware('auth');
+Route::get('medical', 'MembersController@Medical')->middleware('auth');
 
 //Report Routes
 Route::get('/flights/rollcall', 'ReportController@RollCall')->middleware('auth');
 Route::get('/flights/RoomCall', 'ReportController@RoomRoll')->middleware('auth');
+Route::get('/reports/medical', 'ReportController@MedicalList')->middleware('auth');
 
 //Ajax Calls
 Route::get('get/members', 'MembersController@getMemberlist')->name('getMembers');
 Route::get('get/food', 'FoodController@getFoodlist')->name('getFood');
 Route::get('get/huts', 'HutController@getHutlist')->name('getHuts');
+Route::get('get/medical', 'MembersController@getMedicallist')->name('getMedical');
 
 
 //Development Routes

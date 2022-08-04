@@ -197,6 +197,28 @@ class MembersController extends Controller
 
     }
 
+    public function getMedicallist(Request $request)
+    {
+        if ($request->ajax()) {
+
+            $camp = Campmapping::latest()->value('id');
+            $medical = Medical::where('camp_id', $camp)->get();
+
+            return DataTables::of($medical)
+                ->addColumn('membership', function ($row) {
+                    return $row->member->membership;
+                })
+
+                ->addColumn('first_name', function($row) {
+                    return $row->member->first_name;
+                })
+                ->addColumn('last_name', function($row) {
+                    return $row->member->last_name;
+                })
+                ->make(true);
+        }
+    }
+
 
     // This function is an Ajax request for the Member Datatable list
     public function getMemberlist(Request $request)
@@ -350,7 +372,7 @@ class MembersController extends Controller
         $e->camp_id = $campid;
         $e->member_id = $id;
         $e->condition = $request->get('condition');
-        $e->note = $request->get('notes');
+        $e->notes = $request->get('notes');
         $e->save();
 
         return redirect(action('MembersController@show', $id));
@@ -368,6 +390,13 @@ class MembersController extends Controller
 
         return redirect(action('MembersController@show', $id));
     }
+
+    public function Medical()
+    {
+        return view ('members.medical');
+    }
+
+
 
 
 

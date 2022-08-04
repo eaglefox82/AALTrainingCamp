@@ -45,9 +45,9 @@
                         <td class="text-center">{{  $h->member->first_name }}</td>
                         <td class="text-center">{{ $h->member->last_name }}</td>
                         <td class="text-center">{{ $h->member->unitmap->unit }}</td>
-                        <td class="text-center"><i class="fa fa-square-o" ></i></td>
-                        <td class="text-center"><i class="fa fa-square-o" ></i></td>
-                        <td class="text-center"><i class="fa fa-square-o" ></i></td>
+                        <td class="text-center"><i class="fa fa-square-o fa-2x" ></i></td>
+                        <td class="text-center"><i class="fa fa-square-o fa-2x" ></i></td>
+                        <td class="text-center"><i class="fa fa-square-o fa-2x" ></i></td>
                     </tr>
                     @php $count++; @endphp
                 @endif
