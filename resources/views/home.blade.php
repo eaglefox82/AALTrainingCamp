@@ -23,9 +23,9 @@
         <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="card card-stats">
-                    <div class="card-header card-header-rose card-header-icon">
+                    <div class="card-header card-header-warning card-header-icon">
                         <div class="card-icon">
-                            <i class="fa fa-university fa-2x"></i>
+                            <i class="fa fa-plane fa-2x"></i>
                         </div>
                         <p class="card-category">Number in Camp<br><br></p>
                         <h3 class="card-title">{{ $incamp->count() }}</h3>
@@ -53,7 +53,7 @@
                 <div class="card card-stats">
                     <div class="card-header card-header-info card-header-icon">
                         <div class="card-icon">
-                            <i class="fa fa-plane fa-2x"></i>
+                            <i class="fa fa-male fa-2x"></i>
                         </div>
                         <p class="card-category">Total Males<br>{{ number_format(($incamp->where('gender', 'M')->count())/$incamp,2) }}%<br></p>
                         <h3 class="card-title">{{ $incamp->where('gender', 'M')->count() }}</h3>
@@ -65,9 +65,9 @@
 
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="card card-stats">
-                    <div class="card-header card-header-warning card-header-icon">
+                    <div class="card-header card-header-rose card-header-icon">
                         <div class="card-icon">
-                            <i class="fa fa-anchor fa-2x"></i>
+                            <i class="fa fa-female fa-2x"></i>
                         </div>
                         <p class="card-category">Total Females<br>{{ number_format(($incamp->where('gender', 'F')->count())/$incamp,2) }}%<br></p>
                         <h3 class="card-title">{{  $incamp->where('gender', 'F')->count() }}</h3>
@@ -83,7 +83,7 @@
                 <div class="card card-stats">
                     <div class="card-header card-header-success card-header-icon">
                         <div class="card-icon">
-                            <i class="fa fa-money fa-2x"></i>
+                            <i class="fa fa-percent fa-2x"></i>
                         </div>
                         <p class="card-category">Camp Attendance Rate<br><br></p>
                         <h3 class="card-title">{{number_format($pencentage,2) }}%</h3>

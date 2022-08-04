@@ -39,6 +39,10 @@ Route::get('/members/assign/{id}', 'MembersController@assignMember')->middleware
 Route::get('/flights', 'LessonsController@flights')->middleware('auth');
 Route::get('/flights/rollcall', 'ReportController@RollCall')->middleware('auth');
 
+//Report Routes
+Route::get('/flights/rollcall', 'ReportController@RollCall')->middleware('auth');
+Route::get('/flights/RoomCall', 'ReportController@RollCall')->middleware('auth');
+
 //Ajax Calls
 Route::get('get/members', 'MembersController@getMemberlist')->name('getMembers');
 Route::get('get/food', 'FoodController@getFoodlist')->name('getFood');

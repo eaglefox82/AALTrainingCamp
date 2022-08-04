@@ -169,7 +169,7 @@
 
                 <li class="nav-item">
                     <a class="nav-link" href="">
-                        <i class="fa-solid fa-person-circle-check"></i>
+                        <i class="fa fa-id-card-o"></i>
                         <p>Uniform Inspection</p>
                     </a>
                 </li>
