@@ -102,4 +102,14 @@ class ReportController extends Controller
 
 
     }
+
+    public function RoomRoll()
+    {
+        $campid = Campmapping::latest()->value('id');
+        $rooms = Membermapping::where('camp_id', $campid)->get();
+        $huts = Huts::all();
+
+        $pdf = PDF::loadView('reports.RoomRoll', compact('rooms', 'huts'));
+        //return view('reports.RoomRoll', compact('rooms','huts'));
+    }
 }

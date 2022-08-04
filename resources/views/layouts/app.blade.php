@@ -161,9 +161,16 @@
 
 
                 <li class="nav-item">
-                    <a class="nav-link" href="">
+                    <a class="nav-link" href="https://trainingcamp.falcongaming.com.au">
                         <i class="fa fa-handshake-o"></i>
                         <p>Admin Managment</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="">
+                        <i class="fa-solid fa-person-circle-check"></i>
+                        <p>Uniform Inspection</p>
                     </a>
                 </li>
 
