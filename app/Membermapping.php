@@ -17,7 +17,7 @@ class Membermapping extends Model
 
     public function room()
     {
-        return $this->hasOne('App\huts', 'id', 'hut_id');
+        return $this->hasOne('App\Huts', 'id', 'hut_id');
     }
 
     public function flight()

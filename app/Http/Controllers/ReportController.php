@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Carbon\Carbon;
 use PDF;
 
@@ -11,6 +12,7 @@ Use App\Campmapping;
 Use App\Membermapping;
 use App\Huts;
 use App\Medical;
+use App\Food;
 
 class ReportController extends Controller
 {
@@ -116,7 +118,7 @@ class ReportController extends Controller
         $pdf = PDF::loadView('reports.RoomCall', compact('rooms', 'huts'));
 
         return $pdf->download('RoomCall.pdf');
-        //return view('reports.RoomRoll', compact('rooms','huts'));
+        //return view('reports.RoomCall', compact('rooms','huts'));
     }
 
     public function MedicalList()
@@ -128,5 +130,17 @@ class ReportController extends Controller
 
         //return $pdf->download('MedicalList.pdf');
         return view('reports.medical', compact('medical'));
+    }
+
+
+    public function DietList()
+    {
+        $campid = Campmapping::latest()->value('id');
+        $diet = Food::where('camp_id', $campid)->get();
+
+        $pdf = PDF::loadView('reports.diet', compact('diet'));
+
+        //return $pdf->download('DietList.pdf');
+        return view('reports.RoomCall', compact('medical'));
     }
 }

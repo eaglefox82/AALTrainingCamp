@@ -36,7 +36,7 @@
                                     <td>Diet Listing</td>
                                     <td>Creates Diet Requirements list</td>
                                     <td>
-                                        <a href=""  title="Run Report" class="btn btn-round btn-gray"><i class="fa fa-list-alt"></i></a>
+                                        <a href="{{ action('ReportController@DietList') }}"  title="Run Report" class="btn btn-round btn-success"><i class="fa fa-list-alt"></i></a>
                                     </td>
                                 </tr>
 
